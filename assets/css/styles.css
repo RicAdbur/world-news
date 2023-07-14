@@ -1,0 +1,42 @@
+body {
+    background-color: hsl(0, 0%, 21%);
+    height: 100vh;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+    margin-top: 3rem;
+}
+
+/* Form style */
+input {
+    margin-top: 2rem;
+}
+
+datalist { 
+    position: absolute;
+  }
+
+#search-btn {
+    margin-top: 1rem;
+}
+
+.news {
+    min-height: 6rem;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+    .logo {
+        margin-top: 0;
+    }
+}
+
+@media (min-width:769px) and (max-width:1023px) {
+    .logo {
+        margin-top: 1rem;
+    }
+}

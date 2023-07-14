@@ -1,49 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World News</title>
+
     <!-- CSS Reset -->
     <link rel="stylesheet" href="./assets/css/reset.css">
     <!-- Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/styles.css">
+
 </head>
 <body>
 
+    <header class="section">
 
-    <header>
-        <h1>World News With Country Info</h1>
-        <form action="">
-            <label>Enter a country:</label>
-            <input list="countries">
-        <!-- Country search from API would go here  -->
-            <datalist id="countries">
-            </datalist>
-            <button>Search</button>
-        </form>
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <figure class="image is-fullwidth">
+                    <img src="assets/images/news-world-1.png" alt="news world logo" class="logo is-centered">
+                    <form action="">           
+                </figure>
+
+                <form class="columns form">
+                    <input class="input column" type="text" placeholder="Enter a country name" list="countries">
+                    <!-- Country search from API would go here  -->
+                    <datalist id="countries">
+                    </datalist>
+                    <button class="button is-primary is-fullwidth" id="search-btn">Search</button>
+                </form> 
+            </div>
+        </div>
+
     </header>
 
-    <main>
-    <!-- country info display -->
-        <section id="country_info" class="left card">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis animi pariatur dolore iusto voluptatem ratione accusantium non aliquam, nihil iste, enim velit nesciunt officia veniam, inventore maiores autem consequuntur numquam.
-        </section>
+    <main class="section">
+        
+        <div class="box">
+            <h2 class="title has-text-centered">Latest News in {Country}</h2>
+            <div class="columns is-multiline is-centered">
+                <div class="column box is-4 news">
+                    <h2>News1</h2>
+                    <p>test</p>
+                </div>
+                <div class="column box is-4 news">
+                    <h2>News2</h2>
+                    <p>test</p>
+                </div>
+                <div class="column box is-4 news">
+                    <h2>News3</h2>
+                    <p>test</p>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <img src="assets/images/flag.png" alt="country flag">
+                </div>
+                <div class="column">
+                    <p>Capitol:</p>
+                    <p>Language:</p>
+                    <p>Population:</p>
+                    <p>Continent:</p>
+                </div>
+            </div>
+        </div>
 
-    <!--  news display-->
-        <section id="country_news" class="right card">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et voluptates, illum nisi ullam ipsa porro repellendus inventore saepe praesentium aliquam. Laborum voluptate et odio minus itaque culpa temporibus totam harum?
-        </section>
     </main>
 
     <aside id="search_history">
         <p>1,2,3</p>
     </aside>
 
-    
     <!-- Custome Script -->
     <script src="./assets/js/script.js"></script>
+
 </body>
 </html>
