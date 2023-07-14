@@ -17,13 +17,16 @@
     <header class="section">
         <div class="columns is-centered">
             <div class="column is-half">
-                <img src="assets/images/news-world-1.png" alt="news world logo" class="logo is-centered">
-                <form action="">
-                    <input type="text" placeholder="Enter a country name" list="countries">
-                <!-- Country search from API would go here  -->
+                <figure class="image is-fullwidth">
+                    <img src="assets/images/news-world-1.png" alt="news world logo" class="logo is-centered">
+                    <form action="">           
+                </figure>
+                <form class="columns form">
+                    <input class="input column" type="text" placeholder="Enter a country name" list="countries">
+                    <!-- Country search from API would go here  -->
                     <datalist id="countries">
                     </datalist>
-                    <button class="button is-primary">Search</button>
+                    <button class="button is-primary is-fullwidth" id="search-btn">Search</button>
                 </form>
                 
             </div>
@@ -33,12 +36,12 @@
     <main>
     <!-- country info display -->
         <section id="country_info" class="left card">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis animi pariatur dolore iusto voluptatem ratione accusantium non aliquam, nihil iste, enim velit nesciunt officia veniam, inventore maiores autem consequuntur numquam.
+
         </section>
 
     <!--  news display-->
         <section id="country_news" class="right card">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et voluptates, illum nisi ullam ipsa porro repellendus inventore saepe praesentium aliquam. Laborum voluptate et odio minus itaque culpa temporibus totam harum?
+
         </section>
     </main>
 
