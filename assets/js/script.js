@@ -1,8 +1,7 @@
 var countriesListEl = document.getElementById("countries")
-var dropdownListItems = document.createElement("option")
 var countryArray = []
 
-fetch ("https://restcountries.com/v3.1/all?fields=name,flags,languages,capital,cca2")
+fetch ("https://restcountries.com/v3.1/all?fields=name")
 .then(function(response) {
     return response.json()
 })
@@ -11,6 +10,12 @@ fetch ("https://restcountries.com/v3.1/all?fields=name,flags,languages,capital,c
         var countryName = countryDataArray[i].name.common
         // console.log(countryName)
         countryArray[i] = countryName
-    }
+        var dropdownListItems = document.createElement("option")
+        // dropdownListItems.text = countryArray[i]
+        dropdownListItems.value = countryArray[i]
+        countriesListEl.appendChild(dropdownListItems)
+        }
 })
+
+
 console.log(countryArray)
