@@ -14,16 +14,20 @@
 <body>
 
 
-    <header>
-        <h1>World News With Country Info</h1>
-        <form action="">
-            <label>Enter a country:</label>
-            <input list="countries">
-        <!-- Country search from API would go here  -->
-            <datalist id="countries">
-            </datalist>
-            <button>Search</button>
-        </form>
+    <header class="section">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <img src="assets/images/news-world-1.png" alt="news world logo" class="logo is-centered">
+                <form action="">
+                    <input type="text" placeholder="Enter a country name" list="countries">
+                <!-- Country search from API would go here  -->
+                    <datalist id="countries">
+                    </datalist>
+                    <button class="button is-primary">Search</button>
+                </form>
+                
+            </div>
+        </div>
     </header>
 
     <main>
