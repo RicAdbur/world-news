@@ -40,30 +40,30 @@
     <main class="section">
         
         <div class="box">
-            <h2 class="title has-text-centered">Latest News in {Country}</h2>
+            <h2 class="title has-text-centered">Latest News in <span>{Country}</span></h2>
             <div class="columns is-multiline is-centered">
-                <div class="column box is-4 news">
+                <div id="news-container-0" class="column box is-4 news">
                     <h2>News1</h2>
                     <p>test</p>
                 </div>
-                <div class="column box is-4 news">
+                <div id="news-container-1" class="column box is-4 news">
                     <h2>News2</h2>
                     <p>test</p>
                 </div>
-                <div class="column box is-4 news">
+                <div id="news-container-2" class="column box is-4 news">
                     <h2>News3</h2>
                     <p>test</p>
                 </div>
             </div>
             <div class="columns">
                 <div class="column">
-                    <img src="assets/images/flag.png" alt="country flag">
+                    <img id="current-country-flag" src="assets/images/flag.png" alt="country flag">
                 </div>
                 <div class="column">
-                    <p>Capitol:</p>
-                    <p>Language:</p>
-                    <p>Population:</p>
-                    <p>Continent:</p>
+                    <p id="current-capitol-display">Capitol:</p>
+                    <p id="current-language-display">Language:</p>
+                    <p id="current-population-display">Population:</p>
+                    <p id="current-region-display">Continent:</p>
                 </div>
             </div>
         </div>

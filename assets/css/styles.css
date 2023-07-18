@@ -28,6 +28,10 @@ datalist {
     min-height: 6rem;
 }
 
+/* .news {
+    margin-bottom: 0px !important;
+} TODO fix margin on lastChild applied by Bulma*/
+
 /* Media queries */
 @media screen and (max-width: 768px) {
     .logo {
