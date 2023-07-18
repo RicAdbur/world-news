@@ -1,5 +1,7 @@
 var countriesListEl = document.getElementById("countries")
+
 var countryNameArray = []
+
 var apiKey = '9cc304d5d23f4ba185e1870cfce21094'
 var countryObjectArray = []
 
@@ -26,6 +28,7 @@ var buttonClick = document.querySelector('button')
 buttonClick.addEventListener('click', function(event){
     event.preventDefault()
     console.log(countryObjectArray)
+
     var countryIndex = countryObjectArray.indexOf(countriesListEl.value)
     
     
@@ -33,8 +36,33 @@ buttonClick.addEventListener('click', function(event){
     
     var countryCode = countryObjectArray[countryIndex].cca2
     console.log(countryCode)
-}
-)
+})
+
+// }
+// )
+
+// function restfulCountries() {
+
+//     fetch("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2")
+// }
+// var searchCountry = countriesListEl.value
+// fetch( 'https://restcountries.com/v3.1/independent?name=' + searchCountry+ '&fields=cca2')
+
+// console.log(countryDataArray)
+
+// var codes = countryDataArray.code
+
+// console.log(countryObjectArray)
+
+// countriesListEl.value = 
+// var searchUrl = 'https://restcountries.com/v3.1/independent?name=' + listCountry+ '&fields=cca2'
+
+// https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2
+
+// fetch ('https://newsapi.org/v2/top-headlines?country=' + '&' apiKey
+// 
+// 
+
 
 
 function newsCall() {
