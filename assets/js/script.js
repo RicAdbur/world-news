@@ -10,6 +10,7 @@ var regionEl = document.getElementById("region-display")
 var flagEL = document.getElementById("country-flag")
 var searchHistoryEl = document.getElementById("search-history")
 var countryNameEl= document.getElementById("country-name")
+var articleArray = []
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
 
 fetch ("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2,region,subregion,population")
@@ -41,6 +42,7 @@ function newsCall(countryCode) {
     return response.json()
  }) .then(function(value) {
     console.log(value)
+    articleArray = value
  })
 }
 
@@ -54,6 +56,8 @@ buttonClick.addEventListener('click', function(event){
     if (!!currentCountryObject) {
         newsCall(currentCountryObject.cca2.toLowerCase())
     }
+    
+    displayNews(articleArray)
 
 })
 
@@ -68,7 +72,7 @@ function countryDataFinder(countryName) {
 
 function displayCountryInfo() {
     var currentCountryObject = countryDataFinder(userInputEl.value)
-    populationEL.innerText= "The population is: "+currentCountryObject.population+ people
+    populationEL.innerText= "The population is: "+currentCountryObject.population+ "people"
     regionEl.innerText= "The continent is: "+currentCountryObject.region
     languageEl.innerText= "The languages(s) used are: "+Object.values(currentCountryObject.languages).join(", ")
     capitalEl.innerText= "The Capital City is: "+currentCountryObject.capital[0]
@@ -76,6 +80,19 @@ function displayCountryInfo() {
     countryNameEl.innerText= currentCountryObject.name.common
 }
 
-function displayNews(){
- 
+function displayNews(articles) {
+    for (var i = 0; i < 3; i++) {
+        var newsContainer = document.getElementById('news-container-' +i)
+        var newsTitleEl = newsContainer.querySelector('h2')
+        var newsParaEl = newsContainer.querySelector('p')
+
+        var newsTitle = articles[i].title
+        var newsAuthor = articles[i].author
+
+        newsTitleEl.textContent = newsTitle
+        newsParaEl.textContent = newsAuthor
+
+        
+
+    }
 }
