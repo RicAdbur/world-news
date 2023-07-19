@@ -56,6 +56,7 @@ buttonClick.addEventListener('click', function(event){
     displayCountryInfo()
     if (!!currentCountryObject) {
         newsCall(currentCountryObject.cca2.toLowerCase())
+        removeHidden()
     }
     
 
@@ -99,4 +100,9 @@ function displayNews(articles) {
         
 
     }
+}
+
+function removeHidden(){
+ var mainContainer= document.getElementById('main-container')
+ mainContainer.classList.remove('hidden')
 }
