@@ -17,21 +17,23 @@
 <body>
 
     <header class="section">
+        <div class="search-section">
 
-        <div class="columns is-centered">
-            <div class="column is-half">
-                <figure class="image is-fullwidth">
-                    <img src="assets/images/news-world-1.png" alt="news world logo" class="logo is-centered">
-                    <form action="">           
-                </figure>
-
-                <form class="columns form">
-                    <input id="user-selection" class="input column" type="text" placeholder="Enter a country name" list="countries">
-                    <!-- Country search from API would go here  -->
-                    <datalist id="countries">
-                    </datalist>
-                    <button class="button is-primary is-fullwidth" id="search-btn">Search</button>
-                </form> 
+            <div class="columns is-centered">
+                <div class="column search-column">
+                    <figure class="image is-fullwidth">
+                        <img src="assets/images/news-world-1.png" alt="news world logo" class="logo is-centered">
+                        <form action="">           
+                    </figure>
+    
+                    <form class="columns form">
+                        <input id="user-selection" class="input column" type="text" placeholder="Enter a country name" list="countries">
+                        <!-- Country search from API would go here  -->
+                        <datalist id="countries">
+                        </datalist>
+                        <button class="button is-primary is-fullwidth" id="search-btn">Search</button>
+                    </form> 
+                </div>
             </div>
         </div>
 
@@ -66,10 +68,10 @@
                     <img id="country-flag" src="" alt="country flag">
                 </div>
                 <div class="column">
-                    <p id="capital-display">Capital:</p>
-                    <p id="language-display">Language:</p>
-                    <p id="population-display">Population:</p>
-                    <p id="region-display">Continent:</p>
+                    <p id="capital-display"></p>
+                    <p id="language-display"></p>
+                    <p id="population-display"></p>
+                    <p id="region-display"></p>
                 </div>
             </div>
         </div>
@@ -77,7 +79,7 @@
     </main>
 
     <aside id="search-history">
-        <p>1,2,3</p>
+
     </aside>
 
     <!-- Custome Script -->

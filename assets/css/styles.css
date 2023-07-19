@@ -36,15 +36,65 @@ datalist {
     margin-bottom: 1.5rem !important;
 }
 
+.box {
+    width: 69rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-section {
+    width: 46rem;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.search-column {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 /* Media queries */
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width:800px) {    
+    main {
+        padding-top: 0 !important;
+    }
+    
     .logo {
         margin-top: 0;
     }
+
+    .box {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .search-section {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
-@media (min-width:769px) and (max-width:1023px) {
+@media (min-width:801px) and (max-width:1250px) {
+    main {
+        padding-top: 0 !important;
+    }
     .logo {
         margin-top: 1rem;
+    }       
+
+    .box {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .search-section {
+        width: 46rem;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
