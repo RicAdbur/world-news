@@ -9,6 +9,7 @@ var populationEL = document.getElementById("population-display")
 var regionEl = document.getElementById("region-display")
 var flagEL = document.getElementById("country-flag")
 var searchHistoryEl = document.getElementById("search-history")
+var countryNameEl= document.getElementById("country-name")
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
 
 fetch ("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2,region,subregion,population")
@@ -67,10 +68,14 @@ function countryDataFinder(countryName) {
 
 function displayCountryInfo() {
     var currentCountryObject = countryDataFinder(userInputEl.value)
-    populationEL.innerText= "The population is: "+currentCountryObject.population
+    populationEL.innerText= "The population is: "+currentCountryObject.population+ people
     regionEl.innerText= "The continent is: "+currentCountryObject.region
     languageEl.innerText= "The languages(s) used are: "+Object.values(currentCountryObject.languages).join(", ")
     capitalEl.innerText= "The Capital City is: "+currentCountryObject.capital[0]
     flagEL.src= "https://www.countryflagicons.com/FLAT/64/"+ currentCountryObject.cca2 +".png"
+    countryNameEl.innerText= currentCountryObject.name.common
 }
 
+function displayNews(){
+ 
+}
