@@ -123,9 +123,9 @@ datalist {
     }
 }
 
-/* a.news {
+a.news {
     border: 1px solid black;
-} */
+}
 
 a.news:hover {
     box-shadow: 2px 2px 15px grey;
