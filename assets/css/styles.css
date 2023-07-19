@@ -137,6 +137,15 @@ a.news:hover {
     border: 1px solid var(--bulma-primary);
 }
 
+#main-info-container{
+    background: linear-gradient(to bottom, lightgrey, grey);
+}
+
+.country-info {
+    color: white !important;
+    text-shadow: 0px 0px 3px black !important;
+}
+
 /* .hidden {
     display: none !important;
 } */
