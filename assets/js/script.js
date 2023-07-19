@@ -11,7 +11,7 @@ var flagEL = document.getElementById("country-flag")
 var searchHistoryEl = document.getElementById("search-history")
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
 
-fetch ("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2")
+fetch ("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2,region,subregion,population")
 .then(function(response) {
     return response.json()
 })
@@ -49,6 +49,7 @@ buttonClick.addEventListener('click', function(event){
     console.log(userInputEl.value)
     var currentCountryObject = countryDataFinder(userInputEl.value)
     console.log(currentCountryObject)
+    displayCountryInfo()
     if (!!currentCountryObject) {
         newsCall(currentCountryObject.cca2.toLowerCase())
     }
@@ -63,3 +64,12 @@ function countryDataFinder(countryName) {
     } 
     return null
 }
+
+function displayCountryInfo() {
+    var currentCountryObject = countryDataFinder(userInputEl.value)
+    populationEL.innerText= "The population is: "+currentCountryObject.population
+    regionEl.innerText= currentCountryObject.region
+    languageEl.innerText= Object.values(currentCountryObject.languages).join(", ")
+    capitalEl.innerText= currentCountryObject.capital[0]
+}
+
