@@ -32,9 +32,9 @@ datalist {
     width: 400px;
 }
 
-/* .news {
-    margin-bottom: 0px !important;
-} TODO fix margin on lastChild applied by Bulma*/
+.news {
+    margin-bottom: 1.5rem !important;
+}
 
 /* Media queries */
 @media screen and (max-width: 768px) {

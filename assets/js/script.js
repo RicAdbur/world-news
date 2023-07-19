@@ -10,7 +10,7 @@ var regionEl = document.getElementById("region-display")
 var flagEL = document.getElementById("country-flag")
 var searchHistoryEl = document.getElementById("search-history")
 var countryNameEl= document.getElementById("country-name")
-var articleArray = []
+// var articleArray = []
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
 
 fetch ("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2,region,subregion,population")
@@ -42,7 +42,8 @@ function newsCall(countryCode) {
     return response.json()
  }) .then(function(value) {
     console.log(value)
-    articleArray = value
+    // articleArray = value.articles
+    displayNews(value.articles)
  })
 }
 
@@ -57,7 +58,6 @@ buttonClick.addEventListener('click', function(event){
         newsCall(currentCountryObject.cca2.toLowerCase())
     }
     
-    displayNews(articleArray)
 
 })
 
