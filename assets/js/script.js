@@ -68,8 +68,8 @@ function countryDataFinder(countryName) {
 function displayCountryInfo() {
     var currentCountryObject = countryDataFinder(userInputEl.value)
     populationEL.innerText= "The population is: "+currentCountryObject.population
-    regionEl.innerText= currentCountryObject.region
-    languageEl.innerText= Object.values(currentCountryObject.languages).join(", ")
-    capitalEl.innerText= currentCountryObject.capital[0]
+    regionEl.innerText= "The continent is: "+currentCountryObject.region
+    languageEl.innerText= "The languages(s) used are: "+Object.values(currentCountryObject.languages).join(", ")
+    capitalEl.innerText= "The Capital City is: "+currentCountryObject.capital[0]
 }
 
