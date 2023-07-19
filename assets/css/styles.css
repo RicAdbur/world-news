@@ -3,6 +3,7 @@ body {
     height: 100vh;
 }
 
+/* logo style */
 .logo {
     display: block;
     margin-left: auto;
@@ -16,34 +17,35 @@ input {
     margin-top: 2rem;
 }
 
+/* dropdown style */
 datalist { 
     position: absolute;
-  }
+}
 
+/* serch button */
 #search-btn {
     margin-top: 1rem;
 }
-
+/* news cards */
 .news {
     min-height: 6rem;
 }
 
-#current-country-flag{
-    width: 400px;
-}
-
 .news {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    margin-left: .5rem !important;
+    margin-right: .5rem !important;
 }
 
+/* main data display div */
 .box {
-    width: 69rem;
+    width: 75rem;
     margin-left: auto;
     margin-right: auto;
 }
 
 .search-section {
-    width: 46rem;
+    width: 50rem;
     margin-left: auto;
     margin-right: auto;
 
@@ -54,13 +56,52 @@ datalist {
     padding-bottom: 0;
 }
 
-/* Media queries */
+/* flag */
+#country-flag {
+    width: 200px;
+}
 
-@media screen and (max-width:800px) {    
+/* flag column */
+.column.is-4 {
+    width: 33.33%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+}
+
+/* country description column */
+.column.is-8 {
+    margin-left: .5rem;
+    width: 66.67%;
+}
+
+/* Media queries */
+@media screen and (max-width: 870px) {
     main {
         padding-top: 0 !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .columns {
+        display: flex;
+        flex-wrap: nowrap; /* Prevent flex items from wrapping */
+        justify-content: center;
+        align-items: flex-start;
     }
     
+    .column {
+        flex: 1;
+        padding: 0.5rem;
+    }
+
+    .news {
+        margin-bottom: 1rem !important;
+        margin-left: .5rem !important;
+        margin-right: .5rem !important;
+        width: 97% !important;
+    }
+
     .logo {
         margin-top: 0;
     }
@@ -76,11 +117,16 @@ datalist {
         margin-left: auto;
         margin-right: auto;
     }
+
+    .columns.is-multiline .box.news {
+        flex: 1 0 100%;
+    }
 }
 
-@media (min-width:801px) and (max-width:1250px) {
+@media (min-width:871px) and (max-width:1320px) {
     main {
         padding-top: 0 !important;
+        
     }
     .logo {
         margin-top: 1rem;
@@ -93,7 +139,7 @@ datalist {
     }
 
     .search-section {
-        width: 46rem;
+        width: 50rem;
         margin-left: auto;
         margin-right: auto;
     }
