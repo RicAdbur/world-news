@@ -1,3 +1,7 @@
+:root {
+  --bulma-primary:#00d1b2;
+}
+
 body {
     background-color: hsl(0, 0%, 21%);
     height: 100vh;
@@ -130,7 +134,7 @@ a.news {
 a.news:hover {
     box-shadow: 2px 2px 15px grey;
     transform: scale(1.5);
-    border: 1px solid #00d1b2;
+    border: 1px solid var(--bulma-primary);
 }
 
 /* .hidden {
