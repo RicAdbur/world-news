@@ -123,6 +123,15 @@ datalist {
     }
 }
 
+a.news:hover {
+    box-shadow: 2px 2px 15px grey;
+    transform: scale(1.5);
+}
+
+/* .hidden {
+    display: none !important;
+} */
+
 @media (min-width:871px) and (max-width:1320px) {
     main {
         padding-top: 0 !important;

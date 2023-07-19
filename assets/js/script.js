@@ -72,9 +72,10 @@ function countryDataFinder(countryName) {
 
 function displayCountryInfo() {
     var currentCountryObject = countryDataFinder(userInputEl.value)
-    populationEL.innerText= "Population: "+currentCountryObject.population
+    var pop = currentCountryObject.population
+    populationEL.innerText= "Population: "+ new Intl.NumberFormat().format(pop)
     regionEl.innerText= "Region: "+currentCountryObject.region
-    languageEl.innerText= "Languages(s): "+Object.values(currentCountryObject.languages).join(", ")
+    languageEl.innerText= "Language(s): "+Object.values(currentCountryObject.languages).join(", ")
     capitalEl.innerText= "Capital: "+currentCountryObject.capital[0]
     flagEL.src= "https://www.countryflagicons.com/FLAT/64/"+ currentCountryObject.cca2 +".png"
     countryNameEl.innerText= currentCountryObject.name.common
