@@ -85,13 +85,16 @@ function displayNews(articles) {
         var newsContainer = document.getElementById('news-container-' +i)
         var newsTitleEl = newsContainer.querySelector('h2')
         var newsParaEl = newsContainer.querySelector('p')
+        var newsUrlEl = newsContainer.parentElement
 
         var newsTitle = articles[i].title
         var newsAuthor = articles[i].author
+        var newsUrl = articles[i].url
+        
 
         newsTitleEl.textContent = newsTitle
         newsParaEl.textContent = newsAuthor
-
+        newsUrlEl.setAttribute("href", newsUrl)
         
 
     }
