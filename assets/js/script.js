@@ -71,5 +71,6 @@ function displayCountryInfo() {
     regionEl.innerText= "The continent is: "+currentCountryObject.region
     languageEl.innerText= "The languages(s) used are: "+Object.values(currentCountryObject.languages).join(", ")
     capitalEl.innerText= "The Capital City is: "+currentCountryObject.capital[0]
+    flagEL.src= "https://www.countryflagicons.com/FLAT/64/"+ currentCountryObject.cca2 +".png"
 }
 

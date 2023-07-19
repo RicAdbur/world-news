@@ -28,6 +28,10 @@ datalist {
     min-height: 6rem;
 }
 
+#current-country-flag{
+    width: 400px;
+}
+
 /* .news {
     margin-bottom: 0px !important;
 } TODO fix margin on lastChild applied by Bulma*/
