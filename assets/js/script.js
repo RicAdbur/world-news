@@ -14,10 +14,11 @@ var countryNameEl= document.getElementById("country-name")
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
 
 var savedUserFavorites = getLocalStorage()
-// variable to use for favorited countries, called with 
+// variable to use for favorited countries
 
 fetchRestAPI()// calls to REST API, creates country objects for all countries and sets country names in the search bar
-getLocalStorage() //adds favorites to savedUserFavorites array
+getLocalStorage() //adds favorites to savedUserFavorites array, can be removed once  is complete
+// TODO call displayFavorites() function, remove getLocalStorage() on page load
 
 function fetchRestAPI() {
     fetch ("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2,region,subregion,population")
