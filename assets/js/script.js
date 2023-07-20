@@ -55,6 +55,7 @@ function newsCall(countryCode) {
 }  //completes call to news API and runs displayNews()
 
 var searchButtonClick = document.getElementById('search-btn')
+// var resetButtonClick = document.querySelectorAll('#favorite-button')
 
 searchButtonClick.addEventListener('click', function(event){
     event.preventDefault()
@@ -73,6 +74,7 @@ searchButtonClick.addEventListener('click', function(event){
     
 
 })
+
 
 function countryDataFinder(countryName) {
     for (var i = 0; i < countryObjectArray.length; i++) {
@@ -142,10 +144,10 @@ function saveFavorite() {
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
-} //takes the first letter of the string, capitalizes it, 
+} //takes the first letter of the string, capitalizes it, concats it back into a string
 
 //TODO
 
 //add replacement to author if no value
 //add replacement for articles if non populate
-//
+//add catch if country info displays no values for each value type
