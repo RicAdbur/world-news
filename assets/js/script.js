@@ -74,9 +74,6 @@ searchButtonClick.addEventListener('click', function(event){
 
 })
 
-// favoriteButtonEl.addEventListener('click', saveFavorite())
-//even listener for favorite buttons, TODO rename favoriteButtonEl variable
-
 function countryDataFinder(countryName) {
     for (var i = 0; i < countryObjectArray.length; i++) {
         if(countryObjectArray[i].name.common == countryName) {
