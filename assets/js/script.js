@@ -55,10 +55,10 @@ function newsCall(countryCode) {
  })
 }  //completes call to news API and runs displayNews()
 
-var searchButtonClick = document.getElementById('search-btn')
-// var resetButtonClick = document.querySelectorAll('#favorite-button')
+var buttonClick = document.getElementById('search-btn')
 
-searchButtonClick.addEventListener('click', function(event){
+
+buttonClick.addEventListener('click', function(event){
     event.preventDefault()
     console.log(userInputEl.value)
     var currentCountryObject = countryDataFinder(userInputEl.value)
@@ -124,7 +124,7 @@ function setLocalStorage(userCountry){
     var capitalizedCountry = capitalizeFirstLetter(userCountry);
     savedUserFavorites.push(capitalizedCountry); // adds capitalized input to the savedUserFavorites array
     localStorage.setItem('userFavorites', JSON.stringify(savedUserFavorites)); // sets userFavorites array to localStorage
-} //pushes user input into savedUserFavorites array
+} //pushes user input into savedUserFavorites array with capital letter
 
 function getLocalStorage() {
     var data = localStorage.getItem('userFavorites')
