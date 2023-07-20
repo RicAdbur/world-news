@@ -83,7 +83,7 @@ function countryDataFinder(countryName) {
         } 
     } 
     return null
-}
+} //selects country object based on user input value
 
 function displayCountryInfo() {
     var currentCountryObject = countryDataFinder(userInputEl.value)
@@ -150,3 +150,4 @@ function capitalizeFirstLetter(string) {
 //add replacement to author if no value
 //add replacement for articles if non populate
 //add catch if country info displays no values for each value type
+// make flag picture smaller to reduce pixelation
