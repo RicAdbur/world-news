@@ -128,7 +128,6 @@ function setLocalStorage(userCountry){
 function getLocalStorage() {
     var data = localStorage.getItem('userFavorites')
     return JSON.parse(data) || []
-    savedUserFavorites = JSON.parse(data).value
 } //calls local storage for userFavorites
 
 function displayFavorites(){
