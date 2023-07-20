@@ -8,7 +8,7 @@ var languageEl = document.getElementById("language-display")
 var populationEL = document.getElementById("population-display")
 var regionEl = document.getElementById("region-display")
 var flagEL = document.getElementById("country-flag")
-var searchHistoryEl = document.getElementById("search-history")
+var favoritesMenuEl = document.getElementById("user-favorites")
 var countryNameEl= document.getElementById("country-name")
 // var articleArray = []
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
@@ -84,7 +84,7 @@ function countryDataFinder(countryName) {
         } 
     } 
     return null
-} //selects country object based on user input value
+} //selects country object based on user input value TODO add catch for incorrect inputs
 
 function displayCountryInfo() {
     var currentCountryObject = countryDataFinder(userInputEl.value)
@@ -133,7 +133,7 @@ function getLocalStorage() {
 
 function displayFavorites(){
  getLocalStorage()
- searchHistoryEl.innerHTML= ''
+ favoritesMenuEl.innerHTML= ''
  //TODO code to append info into html
 } //runs on page load and any time a favorite is added, will display userFavorites as elements on the page
 
@@ -151,4 +151,5 @@ function capitalizeFirstLetter(string) {
 //add replacement to author if no value
 //add replacement for articles if non populate
 //add catch if country info displays no values for each value type
-// make flag picture smaller to reduce pixelation
+//make flag picture smaller to reduce pixelation
+//add catch for non country input
