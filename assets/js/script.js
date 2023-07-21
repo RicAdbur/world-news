@@ -59,11 +59,32 @@ function displayCountryInfo() {
     var currentCountryObject = countryDataFinder(userInputEl.value)
     var pop = currentCountryObject.population
 
-    populationEL.innerText = "Population: "+ new Intl.NumberFormat().format(pop)
-    regionEl.innerText = "Region: "+currentCountryObject.region
-    languageEl.innerText = "Language(s): "+Object.values(currentCountryObject.languages).join(", ")
-    capitalEl.innerText = "Capital: "+currentCountryObject.capital[0]
+    if(pop===null){
+        populationEL.innerText = "No Data Avavilable"
+    } else{
+        populationEL.innerText = "Population: "+ new Intl.NumberFormat().format(pop)
+    }
+    
+    if(currentCountryObject.region===null){
+        regionEl.innerText = "No Data Avavilable"
+    } else{
+        regionEl.innerText = "Region: "+currentCountryObject.region
+    }
+    
+    if (currentCountryObject.language===null) {
+        languageEl.innerText = "No Data Available"
+    } else {
+        languageEl.innerText = "Language(s): "+Object.values(currentCountryObject.languages).join(", ")
+    }
+    
+    if(currentCountryObject.capital[0]===null){
+        capitalEl.innerText = "No Data Avavilable"
+    } else {
+        capitalEl.innerText = "Capital: "+currentCountryObject.capital[0]
+    }
+        
     flagEL.src = "https://www.countryflagicons.com/FLAT/64/"+ currentCountryObject.cca2 +".png"
+        
     countryNameEl.innerText = currentCountryObject.name.common
     
 } // displays user selected country info on page
