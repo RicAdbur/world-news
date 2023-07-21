@@ -125,7 +125,7 @@ a.news {
 
 a.news:hover {
     box-shadow: 2px 2px 15px grey;
-    transform: scale(1.10);
+    transform: scale(1.08);
     border: 1px solid var(--bulma-primary);
     transition: all .5s;
 }
