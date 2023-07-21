@@ -162,6 +162,18 @@ a.news:hover::before {
     height: 32px;
 }
 
+html, body {
+ overflow-x: hidden;
+}
+  
+.modal {
+ max-width: 100%;
+}
+  
+.modal-content {
+ overflow-x: hidden;
+}
+
 /* Modified from code courtesy of Dalis Chan, Medium.com */
 .sidebar {
     height: 100%;
