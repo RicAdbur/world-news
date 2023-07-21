@@ -1,7 +1,7 @@
 :root {
     --bulma-primary:#00d1b2;
 }
-  
+
 body {
     background-color: hsl(0, 0%, 21%);
     height: 100vh;
