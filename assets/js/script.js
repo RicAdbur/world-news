@@ -3,22 +3,10 @@ var userInputEl = document.getElementById("user-selection")
 var countryNameArray = []
 var apiKey = '6ca5adca9d894c52b90506cf4e32af81'
 var countryObjectArray = []
-var capitalEl = document.getElementById("capital-display")
-var languageEl = document.getElementById("language-display")
-var populationEL = document.getElementById("population-display")
-var regionEl = document.getElementById("region-display")
-var flagEL = document.getElementById("country-flag")
-var favoritesMenuEl = document.getElementById("user-favorites")
-var countryNameEl= document.getElementById("country-name")
-// var articleArray = []
+var sidebarEl = document.getElementById("mySidebar")
+var countryNameEl = document.getElementById("country-name")
+var mini = true;
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
-
-var savedUserFavorites = getLocalStorage()
-// variable to use for favorited countries
-
-fetchRestAPI()// calls to REST API, creates country objects for all countries and sets country names in the search bar
-getLocalStorage() //adds favorites to savedUserFavorites array, can be removed once  is complete
-// TODO call displayFavorites() function, remove getLocalStorage() on page load
 
 function fetchRestAPI() {
     fetch ("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2,region,subregion,population")
@@ -49,7 +37,7 @@ function newsCall(countryCode) {
     .then(function(response) {
     return response.json()
  }) .then(function(value) {
-    console.log(value)
+    // console.log(value)
     // articleArray = value.articles
     displayNews(value.articles)
  })
@@ -60,18 +48,23 @@ var buttonClick = document.getElementById('search-btn')
 
 buttonClick.addEventListener('click', function(event){
     event.preventDefault()
-    console.log(userInputEl.value)
+    // console.log(userInputEl.value)
     var currentCountryObject = countryDataFinder(userInputEl.value)
     console.log(currentCountryObject)
     //local storage code
     var userCountry = userInputEl.value//variable value must be set in the function to get the value correctly
-    setLocalStorage(userCountry)
+    var searchHistoryCountry = {
+        name: currentCountryObject.name.common,
+        code: currentCountryObject.cca2,
+    }
+    setLocalStorage(searchHistoryCountry)
     //local storage code
     displayCountryInfo()
     if (!!currentCountryObject) {
         newsCall(currentCountryObject.cca2.toLowerCase())
         removeHidden()
     }
+    displayFavorites()
     
 
 })
@@ -87,14 +80,19 @@ function countryDataFinder(countryName) {
 } //selects country object based on user input value TODO add catch for incorrect inputs
 
 function displayCountryInfo() {
+    var capitalEl = document.getElementById("capital-display")
+    var languageEl = document.getElementById("language-display")
+    var populationEL = document.getElementById("population-display")
+    var regionEl = document.getElementById("region-display")
+    var flagEL = document.getElementById("country-flag")
     var currentCountryObject = countryDataFinder(userInputEl.value)
     var pop = currentCountryObject.population
-    populationEL.innerText= "Population: "+ new Intl.NumberFormat().format(pop)
-    regionEl.innerText= "Region: "+currentCountryObject.region
-    languageEl.innerText= "Language(s): "+Object.values(currentCountryObject.languages).join(", ")
-    capitalEl.innerText= "Capital: "+currentCountryObject.capital[0]
-    flagEL.src= "https://www.countryflagicons.com/FLAT/64/"+ currentCountryObject.cca2 +".png"
-    countryNameEl.innerText= currentCountryObject.name.common
+    populationEL.innerText = "Population: "+ new Intl.NumberFormat().format(pop)
+    regionEl.innerText = "Region: "+currentCountryObject.region
+    languageEl.innerText = "Language(s): "+Object.values(currentCountryObject.languages).join(", ")
+    capitalEl.innerText = "Capital: "+currentCountryObject.capital[0]
+    flagEL.src = "https://www.countryflagicons.com/FLAT/64/"+ currentCountryObject.cca2 +".png"
+    countryNameEl.innerText = currentCountryObject.name.common
 }  //displays user selected country info on page
 
 function displayNews(articles) {
@@ -120,11 +118,12 @@ function removeHidden(){
  mainContainer.classList.remove('hidden')
 } //removes hidden class from main-container for article and info display
 
-function setLocalStorage(userCountry){
-    var capitalizedCountry = capitalizeFirstLetter(userCountry);
-    savedUserFavorites.push(capitalizedCountry); // adds capitalized input to the savedUserFavorites array
-    localStorage.setItem('userFavorites', JSON.stringify(savedUserFavorites)); // sets userFavorites array to localStorage
-} //pushes user input into savedUserFavorites array with capital letter
+function setLocalStorage(searchedCountryObject){
+    var storedCountries = getLocalStorage()
+    storedCountries.push(searchedCountryObject); // adds capitalized input to the storedCountries array
+    localStorage.setItem('userFavorites', JSON.stringify(storedCountries)); // sets userFavorites array to localStorage
+    // TODO Remove anything over 10 before saving
+} //pushes user input into storedCountries array with capital letter
 
 function getLocalStorage() {
     var data = localStorage.getItem('userFavorites')
@@ -132,9 +131,23 @@ function getLocalStorage() {
 } //calls local storage for userFavorites
 
 function displayFavorites(){
- getLocalStorage()
- favoritesMenuEl.innerHTML= ''
- //TODO code to append info into html
+    //adds search history objects to savedUserFavorites array
+    var storedCountries = getLocalStorage()
+    sidebarEl.innerHTML= ''
+    for (let i = 0; i < storedCountries.length; i++) {
+        var anchorTag = document.createElement("a")
+        var imgTag = document.createElement("img")
+        var span = document.createElement("span")
+        anchorTag.setAttribute("href", "#")
+        imgTag.setAttribute("src", "https://www.countryflagicons.com/FLAT/32/"+ storedCountries[i].code +".png")
+        imgTag.classList.add("flag-placeholder")
+        span.innerText = storedCountries[i].name
+        imgTag.setAttribute("alt", "country flag")
+        span.classList.add("button-text")
+        anchorTag.appendChild(imgTag)
+        anchorTag.appendChild(span)
+        sidebarEl.appendChild(anchorTag)
+    }
 } //runs on page load and any time a favorite is added, will display userFavorites as elements on the page
 
 function saveFavorite() {
@@ -145,8 +158,6 @@ function saveFavorite() {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
 } //takes the first letter of the string, capitalizes it, concats it back into a string
-
-var mini = true;
 
 function toggleSidebar() {
   if (mini) {
@@ -161,6 +172,10 @@ function toggleSidebar() {
     this.mini = true;
   } // courtesy of Dalis Chan, Medium.com
 }
+
+fetchRestAPI()// calls to REST API, creates country objects for all countries and sets country names in the search bar
+
+displayFavorites()
 
 //TODO
 
