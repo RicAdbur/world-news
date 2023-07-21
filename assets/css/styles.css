@@ -222,6 +222,10 @@ main .sidebar {
     margin-left: 85px;
     transition: margin-left 0.5s;
 }
+
+.margin-correction {
+    transform: translateX(-50px);
+}
 /* Media queries */
 @media screen and (max-width:870px) {
     header {

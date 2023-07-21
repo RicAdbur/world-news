@@ -26,7 +26,7 @@
             </a>
         </div>
     </nav>
-    <div id="main">
+    <div id="main" class="margin-correction">
         <header class="section">
 
             <div class="search-section">
@@ -41,10 +41,10 @@
                         <form class="columns form">
                             <input id="user-selection" class="input column" type="text"
                                 placeholder="Enter a country name" list="countries">
-                            <!-- Country search from API would go here  -->
+                            <!-- Country search from API inserts here -->
                             <datalist id="countries">
                             </datalist>
-                            <button class="button is-primary is-fullwidth" id="search-btn">Search</button>
+                            <button class="button is-primary is-fullwidth js-modal-trigger" id="search-btn" data-target="modal-js-example">Search</button>
                         </form>
                     </div>
                 </div>
@@ -92,6 +92,22 @@
         </main>
 
     </div>
+
+    <!-- Modal -->
+    <div id="modal-js-example" class="modal">
+        <div class="modal-background"></div>
+      
+        <div class="modal-content">
+          <div class="box">
+            <p>Struggling to type a country? Try our dropdown list in the search bar!<br>
+                All countries must be entered with capitalized first letters (e.g., United States).
+        </p>
+          </div>
+        </div>
+      
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/abfe4507ab.js" crossorigin="anonymous"></script>
     <!-- Custome Script -->

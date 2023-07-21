@@ -1,13 +1,10 @@
-var countriesListEl = document.getElementById("countries")
 var userInputEl = document.getElementById("user-selection") 
-var countryNameEl = document.getElementById("country-name")
 var navEl = document.querySelector("nav")
 var sidebarEl = document.getElementById("mySidebar")
 var buttonClick = document.getElementById('search-btn')
-var countryNameArray = []
 var countryObjectArray = []
 var proxyUrl = 'https://octoproxymus.herokuapp.com?secret=walrus&url='
-var apiKey = '41f1f6404e4148378dc8f71e86851acf'
+var apiKey = '16fd0419d9a245f9881c879b46493a80'
 var mini = true;
 
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
@@ -18,15 +15,12 @@ function fetchRestAPI() {
         return response.json()
     })
     .then(function(allCountryData) {
-        // populates the dropdown menu
+        // populates the dropdown menu options to the id in datalist
         for ( var i = 0; i < allCountryData.length; i++) {
             if (validNewsCountries.includes(allCountryData[i].cca2.toLowerCase() ) ) {
-                var countryName = allCountryData[i].name.common
-                // console.log(countryName)
-                countryNameArray[i] = countryName
                 var dropdownListItems = document.createElement("option")
-                // dropdownListItems.text = countryNameArray[i]
-                dropdownListItems.value = countryNameArray[i]
+                var countriesListEl = document.getElementById("countries")
+                dropdownListItems.value = allCountryData[i].name.common
                 countriesListEl.appendChild(dropdownListItems)
                 countryObjectArray.push(allCountryData[i])
             }
@@ -56,6 +50,7 @@ function countryDataFinder(countryName) {
 } // selects country object based on user input value TODO add catch for incorrect inputs
 
 function displayCountryInfo() {
+    var countryNameEl = document.getElementById("country-name")
     var capitalEl = document.getElementById("capital-display")
     var languageEl = document.getElementById("language-display")
     var populationEL = document.getElementById("population-display")
@@ -118,7 +113,8 @@ function displayFavorites(){
     var storedCountries = getLocalStorage()
     // check if there are stored countries
     if (storedCountries.length > 0) {
-        navEl.classList.remove("hidden")   
+        navEl.classList.remove("hidden")
+        document.getElementById("main").classList.remove("margin-correction")
         // limits search history to max of 10 results
         if (storedCountries.length > 10) {
             storedCountries = storedCountries.slice(-10)
@@ -155,6 +151,7 @@ function displayFavorites(){
         // Hide the "Clear History" button when there are no favorites
         navEl.classList.add('hidden')
         clearHistoryBtn.classList.add('hidden')
+        document.getElementById("main").classList.add("margin-correction")
     }
     sidebarEl.appendChild(clearHistoryBtn);
 } // runs on page load and any time a favorite is added, will display userFavorites as elements on the page
@@ -194,9 +191,12 @@ function clearHistory() {
 
 buttonClick.addEventListener('click', function(event){
     event.preventDefault()
+    
     // console.log(userInputEl.value)
     var currentCountryObject = countryDataFinder(userInputEl.value)
-    console.log(currentCountryObject)
+     if (currentCountryObject === null) {
+        return;
+         }
     //local storage code
     var searchHistoryCountry = {
         name: currentCountryObject.name.common,
@@ -205,14 +205,48 @@ buttonClick.addEventListener('click', function(event){
     setLocalStorage(searchHistoryCountry)
     //local storage code
     displayCountryInfo()
-    if (!!currentCountryObject) {
+
         newsCall(currentCountryObject.cca2.toLowerCase())
         removeHidden()
-    }
-    displayFavorites()
-    
-}) // event listener for search button
+        displayFavorites()
+    } ) // event listener for search button
  
+ 
+
+document.addEventListener('DOMContentLoaded', () => {
+
+      // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add('is-active');
+  }
+
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+
+    // Add a click event on buttons to open a specific modal
+    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+      const modal = $trigger.dataset.target;
+      const $target = document.getElementById(modal);
+  
+      $trigger.addEventListener('click', () => {
+        var currentCountryObject = countryDataFinder(userInputEl.value)
+        if (currentCountryObject === null) {
+        openModal($target);
+        }
+      });
+    });
+  
+    // Add a click event on various child elements to close the parent modal
+    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+      const $target = $close.closest('.modal');
+  
+      $close.addEventListener('click', () => {
+        closeModal($target);
+      });
+    });
+  }); // Bulma Modal functions
+
 
 fetchRestAPI() // calls to REST API, creates country objects for all countries and sets country names in the search bar
 
@@ -223,4 +257,3 @@ displayFavorites()
 //add replacement to author if no value
 //add replacement for articles if non populate
 //add catch if country info displays no values for each value type
-//add catch for non country input
