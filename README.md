@@ -4,7 +4,7 @@ This application allows the user to search by country, and then displays news ar
 
 
 ---
-![Screenshot]()
+![Screenshot](./assets/images/NewsWorldScreenshot.png)
 
 ---
 Powered by [REST Coutries API](https://restcountries.com/) and [NewsAPI](https://https://newsapi.org/)
