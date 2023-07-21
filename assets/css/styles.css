@@ -44,6 +44,8 @@ datalist {
     margin-bottom: 1rem !important;
     margin-left: .5rem !important;
     margin-right: .5rem !important;
+    /* background: rgb(200,200,200);
+    background: radial-gradient(circle, rgba(200,200,200,1) 0%, rgba(133,133,133,1) 100%); */
 }
   
 /* main data display div */
@@ -119,14 +121,11 @@ datalist {
   
 a.news {
     border: 1px solid black;
-    /* background: radial-gradient(circle, white 40%, grey 100%);
-    color: white;
-    text-shadow: 0px 0px 3px black !important; */
 }
 
 a.news:hover {
     box-shadow: 2px 2px 15px grey;
-    transform: scale(1.05);
+    transform: scale(1.10);
     border: 1px solid var(--bulma-primary);
     transition: all .5s;
 }
@@ -333,7 +332,6 @@ main .sidebar {
         margin-right: auto;
     }
 }
-
 
 
 
