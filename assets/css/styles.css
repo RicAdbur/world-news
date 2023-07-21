@@ -103,7 +103,6 @@ datalist {
 /* Shrink the font size to fit the container when it becomes too small */
 .country-info {
     flex-shrink: 1;
- /* Adjust the min, preferred, and max font sizes as needed */
 }
 
 /* country description column */
@@ -163,15 +162,15 @@ a.news:hover::before {
 }
 
 html, body {
- overflow-x: hidden;
+    overflow-x: hidden;
 }
   
 .modal {
- max-width: 100%;
+    max-width: 100%;
 }
   
 .modal-content {
- overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 /* Modified from code courtesy of Dalis Chan, Medium.com */
