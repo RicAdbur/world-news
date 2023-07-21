@@ -146,6 +146,22 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
 } //takes the first letter of the string, capitalizes it, concats it back into a string
 
+var mini = true;
+
+function toggleSidebar() {
+  if (mini) {
+    console.log("opening sidebar");
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    this.mini = false;
+  } else {
+    console.log("closing sidebar");
+    document.getElementById("mySidebar").style.width = "85px";
+    document.getElementById("main").style.marginLeft = "85px";
+    this.mini = true;
+  } // courtesy of Dalis Chan, Medium.com
+}
+
 //TODO
 
 //add replacement to author if no value

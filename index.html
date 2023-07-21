@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -14,76 +15,102 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
 
 </head>
+
 <body>
-
-    <header class="section">
-        <div class="search-section">
-
-            <div class="columns is-centered">
-                <div class="column search-column">
-                    <figure class="image is-fullwidth">
-                        <img src="assets/images/news-world-1.png" alt="news world logo" class="logo is-centered">
-                        <form action="">           
-                    </figure>
-    
-                    <form class="columns form">
-                        <input id="user-selection" class="input column" type="text" placeholder="Enter a country name" list="countries">
-                        <!-- Country search from API would go here  -->
-                        <datalist id="countries">
-                        </datalist>
-                        <button class="button is-primary is-fullwidth" id="search-btn">Search</button>
-                    </form> 
-                </div>
-            </div>
+    <nav>
+        <!-- Modified from code courtesy of Dalis Chan, Medium.com -->
+        <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
+            <a href="#"><img src="https://www.countryflagicons.com/FLAT/32/DE.png" /><span class="button-text">United
+                    Arab Emirates</span></a><br>
+            <a href="#"><img src="https://www.countryflagicons.com/FLAT/32/DE.png" /><span class="button-text">United
+                    Arab Emirates</span></a><br>
+            <a href="#"><img src="https://www.countryflagicons.com/FLAT/32/DE.png" /><span class="button-text">United
+                    Arab Emirates</span></a><br>
+            <a href="#"><img src="https://www.countryflagicons.com/FLAT/32/DE.png" /><span class="button-text">United
+                    Arab Emirates</span></a><br>
+            <a href="#"><img src="https://www.countryflagicons.com/FLAT/32/DE.png" /><span class="button-text">United
+                    Arab Emirates</span></a><br>
+            <a href="#"><img src="https://www.countryflagicons.com/FLAT/32/DE.png" /><span class="button-text">United
+                    Arab Emirates</span></a><br>
+            <a href="#"><img src="https://www.countryflagicons.com/FLAT/32/DE.png" /><span class="button-text">United
+                    Arab Emirates</span></a><br>
+            <a href="#"><img src="https://www.countryflagicons.com/FLAT/32/DE.png" /><span class="button-text">United
+                    Arab Emirates</span></a><br>
+            <a href="#"><img src="https://www.countryflagicons.com/FLAT/32/DE.png" /><span class="button-text">United
+                    Arab Emirates</span></a><br>
+            <a href="#"><img src="https://www.countryflagicons.com/FLAT/32/DE.png" /><span class="button-text">United
+                    Arab Emirates</span></a><br>
         </div>
+    </nav>
+    <div id="main">
+        <header class="section">
 
-    </header>
+            <div class="search-section">
 
-    <main id="main-container" class="section hidden">
-        
-        <div id="main-info-container" class="box">
-            <h2 class="title has-text-centered">Latest News in <span id="country-name">{Country}</span></h2>
-            <div class="columns is-multiline is-centered">
-                <a class="column box news">
-                    <div id="news-container-0" >
-                        <h2>News1</h2>
-                        <p>test</p>
+                <div class="columns is-centered">
+                    <div class="column search-column">
+                        <figure class="image is-fullwidth">
+                            <img src="assets/images/news-world-1.png" alt="news world logo" class="logo is-centered">
+                            <form action="">
+                        </figure>
+
+                        <form class="columns form">
+                            <input id="user-selection" class="input column" type="text"
+                                placeholder="Enter a country name" list="countries">
+                            <!-- Country search from API would go here  -->
+                            <datalist id="countries">
+                            </datalist>
+                            <button class="button is-primary is-fullwidth" id="search-btn">Search</button>
+                        </form>
                     </div>
-                </a>
-                <a class="column box news">
-                    <div id="news-container-1" >
-                        <h2>News2</h2>
-                        <p>test</p>
-                    </div>
-                </a>
-                <a class="column box news">
-                    <div id="news-container-2" >
-                        <h2>News3</h2>
-                        <p>test</p>
-                    </div>
-                </a>
-            </div>
-            <div class="columns">
-                <div class="column is-4">
-                    <img id="country-flag" src="" alt="country flag">
-                </div>
-                <div class="column is-8">
-                    <p id="capital-display" class="country-info"></p>
-                    <p id="language-display" class="country-info"></p>
-                    <p id="population-display" class="country-info"></p>
-                    <p id="region-display" class="country-info"></p>
                 </div>
             </div>
-        </div>
 
-    </main>
+        </header>
 
-    <aside id="search-history">
+        <main id="main-container" class="section hidden">
 
-    </aside>
+            <div id="main-info-container" class="box">
+                <h2 class="title has-text-centered">Latest News in <span id="country-name">{Country}</span></h2>
+                <div class="columns is-multiline is-centered">
+                    <a class="column box news">
+                        <div id="news-container-0">
+                            <h2>News1</h2>
+                            <p>test</p>
+                        </div>
+                    </a>
+                    <a class="column box news">
+                        <div id="news-container-1">
+                            <h2>News2</h2>
+                            <p>test</p>
+                        </div>
+                    </a>
+                    <a class="column box news">
+                        <div id="news-container-2">
+                            <h2>News3</h2>
+                            <p>test</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="columns">
+                    <div class="column is-4">
+                        <img id="country-flag" src="" alt="country flag">
+                    </div>
+                    <div class="column is-8">
+                        <p id="capital-display" class="country-info"></p>
+                        <p id="language-display" class="country-info"></p>
+                        <p id="population-display" class="country-info"></p>
+                        <p id="region-display" class="country-info"></p>
+                    </div>
+                </div>
+            </div>
 
+        </main>
+
+    </div>
     <!-- Custome Script -->
     <script src="./assets/js/script.js"></script>
 
 </body>
+
 </html>
