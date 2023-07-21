@@ -70,6 +70,7 @@ function displayCountryInfo() {
     capitalEl.innerText = "Capital: "+currentCountryObject.capital[0]
     flagEL.src = "https://www.countryflagicons.com/FLAT/64/"+ currentCountryObject.cca2 +".png"
     countryNameEl.innerText = currentCountryObject.name.common
+    
 } // displays user selected country info on page
 
 function displayNews(articles) {
@@ -88,6 +89,8 @@ function displayNews(articles) {
         newsParaEl.textContent = newsAuthor
         newsUrlEl.setAttribute("href", newsUrl)
     }
+    userInputEl.value = "" //clear user entry
+
 } // displays news information in the containers
 
 function removeHidden(){
@@ -135,7 +138,16 @@ function displayFavorites(){
             span.classList.add("button-text")
             anchorTag.appendChild(imgTag)
             anchorTag.appendChild(span)
-            sidebarEl.appendChild(anchorTag)                
+            sidebarEl.appendChild(anchorTag)     
+
+            anchorTag.addEventListener('click', function(event){
+                event.preventDefault()
+                userInputEl.value = storedCountries[i].name
+                displayCountryInfo()
+                newsCall(storedCountries[i].code.toLowerCase())
+                removeHidden()
+            })//event listener for history clicks
+
         }
         // Show the "Clear History" button
         clearHistoryBtn.classList.remove('hidden')
@@ -198,7 +210,9 @@ buttonClick.addEventListener('click', function(event){
         removeHidden()
     }
     displayFavorites()
+    
 }) // event listener for search button
+ 
 
 fetchRestAPI() // calls to REST API, creates country objects for all countries and sets country names in the search bar
 

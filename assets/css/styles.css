@@ -189,6 +189,7 @@ a.news:hover::before {
   
 .sidebar a:hover {
     color: #f1f1f1;
+    background-color: #1f1e1e;
 }
 
 .sidebar img {
@@ -203,7 +204,7 @@ main .sidebar {
     margin-left: 50px;
 }
   
-.flag-icons,
+/* .flag-icons, */
 .button-text {
     vertical-align: middle;
 }
@@ -212,10 +213,10 @@ main .sidebar {
     transform: translate(-6px, 13px);
 }
   
-.flag-icons {
+/* .flag-icons {
     padding-bottom: 3px;
     margin-right: 30px;
-}
+} */
 
 #main {
     /* padding: 16px; */
