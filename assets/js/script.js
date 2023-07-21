@@ -7,7 +7,7 @@ var buttonClick = document.getElementById('search-btn')
 var countryNameArray = []
 var countryObjectArray = []
 var proxyUrl = 'https://octoproxymus.herokuapp.com?secret=walrus&url='
-var apiKey = '6ca5adca9d894c52b90506cf4e32af81'
+var apiKey = '41f1f6404e4148378dc8f71e86851acf'
 var mini = true;
 
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
@@ -44,7 +44,7 @@ function newsCall(countryCode) {
         // articleArray = value.articles
         displayNews(value.articles)
     })
-} //completes call to news API and runs displayNews()
+} // completes call to news API and runs displayNews()
 
 function countryDataFinder(countryName) {
     for (var i = 0; i < countryObjectArray.length; i++) {
@@ -53,7 +53,7 @@ function countryDataFinder(countryName) {
         } 
     } 
     return null
-} //selects country object based on user input value TODO add catch for incorrect inputs
+} // selects country object based on user input value TODO add catch for incorrect inputs
 
 function displayCountryInfo() {
     var capitalEl = document.getElementById("capital-display")
@@ -70,7 +70,7 @@ function displayCountryInfo() {
     capitalEl.innerText = "Capital: "+currentCountryObject.capital[0]
     flagEL.src = "https://www.countryflagicons.com/FLAT/64/"+ currentCountryObject.cca2 +".png"
     countryNameEl.innerText = currentCountryObject.name.common
-} //displays user selected country info on page
+} // displays user selected country info on page
 
 function displayNews(articles) {
     for (var i = 0; i < 3; i++) {
@@ -88,18 +88,18 @@ function displayNews(articles) {
         newsParaEl.textContent = newsAuthor
         newsUrlEl.setAttribute("href", newsUrl)
     }
-} //displays news information in the containers
+} // displays news information in the containers
 
 function removeHidden(){
     var mainContainer= document.getElementById('main-container')
     mainContainer.classList.remove('hidden')
-} //removes hidden class from main-container for article and info display
+} // removes hidden class from main-container for article and info display
 
 function setLocalStorage(searchedCountryObject) {
     var storedCountries = getLocalStorage();
     var storedCountrySet = new Set(storedCountries.map(country => country.code));
   
-    // Check if the country code already exists in the Set
+    // check if the country code already exists in the Set
     if (!storedCountrySet.has(searchedCountryObject.code)) {
       storedCountries.push(searchedCountryObject);
       localStorage.setItem('userFavorites', JSON.stringify(storedCountries));
@@ -109,7 +109,7 @@ function setLocalStorage(searchedCountryObject) {
 function getLocalStorage() {
     var data = localStorage.getItem('userFavorites')
     return JSON.parse(data) || []
-} //calls local storage for userFavorites
+} // calls local storage for userFavorites
 
 function displayFavorites(){
     var storedCountries = getLocalStorage()
@@ -121,7 +121,7 @@ function displayFavorites(){
     if (storedCountries.length > 10) {
         storedCountries = storedCountries.slice(-10)
     }
-    //adds search history objects to savedUserFavorites array
+    // adds search history objects to savedUserFavorites array
     sidebarEl.innerHTML= ''
     storedCountries.reverse()
     for (let i = 0; i < storedCountries.length; i++) {
@@ -142,25 +142,23 @@ function displayFavorites(){
             
         })
     }
-} //runs on page load and any time a favorite is added, will display userFavorites as elements on the page
+} // runs on page load and any time a favorite is added, will display userFavorites as elements on the page
 
 function saveFavorite() {
     setLocalStorage(capitalizedCountry)
     displayFavorites()
-} //for event listener for favorite button
+} // for event listener for favorite button
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
-} //takes the first letter of the string, capitalizes it, concats it back into a string
+} // takes the first letter of the string, capitalizes it, concats it back into a string
 
 function toggleSidebar() {
     if (mini) {
-        console.log("opening sidebar");
         document.getElementById("mySidebar").style.width = "250px";
         document.getElementById("main").style.marginLeft = "250px";
         this.mini = false;
     } else {
-        console.log("closing sidebar");
         document.getElementById("mySidebar").style.width = "85px";
         document.getElementById("main").style.marginLeft = "85px";
         this.mini = true;

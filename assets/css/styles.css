@@ -15,7 +15,11 @@ body {
     width: 65%;
     margin-top: 3rem;
 }
-  
+ 
+#main-info-container {
+    padding-bottom: 0 !important;
+}
+
 /* Form style */
 input {
     margin-top: 2rem;
@@ -59,25 +63,59 @@ datalist {
     padding-top: 0;
     padding-bottom: 0;
 }
+
+.column {
+    flex: 1;
+    padding: 0.5rem;
+}
+
+#data-display.columns {
+    height: 150px;
+}
   
 /* flag */
 #country-flag {
-    width: 200px;
+    width: 150px;
+    transform: translate(4px, -25px);
+    align-self: flex-start;
 }
-  
-/* flag column */
-.column.is-4 {
-    width: 33.33%;
+
+.info {
+    height: fit-content;
+}
+
+#data-display.columns {
     height: 150px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
-  
+
+/* flag column */
+.flag-div {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+/* Shrink the font size to fit the container when it becomes too small */
+.country-info {
+    flex-shrink: 1;
+ /* Adjust the min, preferred, and max font sizes as needed */
+}
+
 /* country description column */
-.column.is-8 {
-    margin-left: .5rem;
-    width: 66.67%;
+.desc-div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0.5rem;
+    flex-shrink: 1;
+    overflow: hidden;
+    font-size: clamp(11px, 2.3vw, 1rem);
 }
+
   
 a.news {
     border: 1px solid black;
@@ -156,7 +194,7 @@ main .sidebar {
 }
   
 #mySidebar img {
-    transform: translateY(10px);
+    transform: translate(-6px, 13px);
 }
   
 .flag-icons {
@@ -183,7 +221,7 @@ main .sidebar {
 
     .columns {
         display: flex;
-        flex-wrap: nowrap; /* Prevent flex items from wrapping */
+        flex-wrap: nowrap;
         justify-content: center;
         align-items: flex-start;
     }
@@ -223,6 +261,10 @@ main .sidebar {
     .search-column {
         padding-top: 0;
         padding-bottom: 0;
+    }
+    
+    .info {
+        height: fit-content;
     }
 }
 
