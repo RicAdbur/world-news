@@ -167,10 +167,12 @@ html, body {
   
 .modal {
     max-width: 100%;
+    width: auto;
 }
   
 .modal-content {
     overflow-x: hidden;
+    width: auto;
 }
 
 /* Modified from code courtesy of Dalis Chan, Medium.com */
@@ -347,7 +349,6 @@ main .sidebar {
         margin-right: auto;
     }
 }
-
 
 
 
