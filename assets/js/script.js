@@ -42,10 +42,10 @@ function newsCall(countryCode) {
 
 function countryDataFinder(countryName) {
     for (var i = 0; i < countryObjectArray.length; i++) {
-        if(countryObjectArray[i].name.common == countryName) {
+        if (countryObjectArray[i].name.common.toLowerCase() === countryName.toLowerCase()) {
             return countryObjectArray[i]
         } 
-    } 
+    }
     return null
 } // selects country object based on user input value TODO add catch for incorrect inputs
 
