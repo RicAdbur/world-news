@@ -257,3 +257,4 @@ displayFavorites()
 //add replacement to author if no value
 //add replacement for articles if non populate
 //add catch if country info displays no values for each value type
+//add blank loading... values to news cards to show before article loads
