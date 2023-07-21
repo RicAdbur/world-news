@@ -3,6 +3,7 @@ var userInputEl = document.getElementById("user-selection")
 var countryNameArray = []
 var apiKey = '6ca5adca9d894c52b90506cf4e32af81'
 var countryObjectArray = []
+var navEl = document.querySelector("nav")
 var sidebarEl = document.getElementById("mySidebar")
 var countryNameEl = document.getElementById("country-name")
 var mini = true;
@@ -131,9 +132,14 @@ function getLocalStorage() {
 } //calls local storage for userFavorites
 
 function displayFavorites(){
-    //adds search history objects to savedUserFavorites array
     var storedCountries = getLocalStorage()
+    console.log(storedCountries)
+    if (storedCountries.length > 0) {
+        navEl.classList.remove("hidden")
+    }
+    //adds search history objects to savedUserFavorites array
     sidebarEl.innerHTML= ''
+    storedCountries.reverse()
     for (let i = 0; i < storedCountries.length; i++) {
         var anchorTag = document.createElement("a")
         var imgTag = document.createElement("img")
@@ -148,7 +154,8 @@ function displayFavorites(){
         anchorTag.appendChild(span)
         sidebarEl.appendChild(anchorTag)
     }
-} //runs on page load and any time a favorite is added, will display userFavorites as elements on the page
+}
+//runs on page load and any time a favorite is added, will display userFavorites as elements on the page
 
 function saveFavorite() {
  setLocalStorage(capitalizedCountry)

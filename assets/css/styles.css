@@ -149,9 +149,9 @@
       text-shadow: 0px 0px 3px black !important;
   }
   
-  /* .hidden {
+  .hidden {
       display: none !important;
-  } */
+  }
   
   @media (min-width:871px) and (max-width:1320px) {
       main {
