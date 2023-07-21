@@ -75,8 +75,8 @@ datalist {
   
 /* flag */
 #country-flag {
-    width: 150px;
-    transform: translate(4px, -25px);
+    width: 136px;
+    transform: translate(4px, -19.5px);
     align-self: flex-start;
 }
 
@@ -126,8 +126,23 @@ a.news {
 
 a.news:hover {
     box-shadow: 2px 2px 15px grey;
-    transform: scale(1.5);
+    transform: scale(1.05);
     border: 1px solid var(--bulma-primary);
+    transition: all .5s;
+}
+
+a.news:hover::before {
+    border: 1px solid black;
+    transition: all .5s;
+}
+
+/* clear history text */
+#clear-history-btn i {
+    margin-right: 24px;
+}
+
+#clear-icon {
+    transform: translate(-2px, 7px);
 }
 
 #main-info-container{

@@ -113,35 +113,38 @@ function getLocalStorage() {
 
 function displayFavorites(){
     var storedCountries = getLocalStorage()
-    console.log(storedCountries)
+    // check if there are stored countries
     if (storedCountries.length > 0) {
-        navEl.classList.remove("hidden")
+        navEl.classList.remove("hidden")   
+        // limits search history to max of 10 results
+        if (storedCountries.length > 10) {
+            storedCountries = storedCountries.slice(-10)
+        }
+        // adds search history objects to savedUserFavorites array
+        sidebarEl.innerHTML= ''
+        storedCountries.reverse()
+        for (let i = 0; i < storedCountries.length; i++) {
+            var anchorTag = document.createElement("a")
+            var imgTag = document.createElement("img")
+            var span = document.createElement("span")
+            anchorTag.setAttribute("href", "#")
+            imgTag.setAttribute("src", "https://www.countryflagicons.com/FLAT/32/"+ storedCountries[i].code +".png")
+            imgTag.setAttribute("alt", "country flag")
+            imgTag.classList.add("flag-placeholder")
+            span.innerText = storedCountries[i].name
+            span.classList.add("button-text")
+            anchorTag.appendChild(imgTag)
+            anchorTag.appendChild(span)
+            sidebarEl.appendChild(anchorTag)                
+        }
+        // Show the "Clear History" button
+        clearHistoryBtn.classList.remove('hidden')
+    } else {
+        // Hide the "Clear History" button when there are no favorites
+        navEl.classList.add('hidden')
+        clearHistoryBtn.classList.add('hidden')
     }
-    // limits search history to max of 10 results
-    if (storedCountries.length > 10) {
-        storedCountries = storedCountries.slice(-10)
-    }
-    // adds search history objects to savedUserFavorites array
-    sidebarEl.innerHTML= ''
-    storedCountries.reverse()
-    for (let i = 0; i < storedCountries.length; i++) {
-        var anchorTag = document.createElement("a")
-        var imgTag = document.createElement("img")
-        var span = document.createElement("span")
-        anchorTag.setAttribute("href", "#")
-        imgTag.setAttribute("src", "https://www.countryflagicons.com/FLAT/32/"+ storedCountries[i].code +".png")
-        imgTag.setAttribute("alt", "country flag")
-        imgTag.classList.add("flag-placeholder")
-        span.innerText = storedCountries[i].name
-        span.classList.add("button-text")
-        anchorTag.appendChild(imgTag)
-        anchorTag.appendChild(span)
-        sidebarEl.appendChild(anchorTag)
-
-        anchorTag.addEventListener("click", function() {
-            
-        })
-    }
+    sidebarEl.appendChild(clearHistoryBtn);
 } // runs on page load and any time a favorite is added, will display userFavorites as elements on the page
 
 function saveFavorite() {
@@ -155,15 +158,27 @@ function capitalizeFirstLetter(string) {
 
 function toggleSidebar() {
     if (mini) {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
+        document.getElementById("mySidebar").style.width = "250px"
+        document.getElementById("main").style.marginLeft = "250px"
         this.mini = false;
     } else {
-        document.getElementById("mySidebar").style.width = "85px";
-        document.getElementById("main").style.marginLeft = "85px";
+        document.getElementById("mySidebar").style.width = "85px"
+        document.getElementById("main").style.marginLeft = "85px"
         this.mini = true;
     } // courtesy of Dalis Chan, Medium.com
 } // sidebar mouseover action
+
+function clearHistory() {
+    // Clear the user's search history from localStorage
+    localStorage.removeItem('userFavorites')
+  
+    // Update the displayed favorites in the navigation
+    displayFavorites()
+  }
+
+  var clearHistoryBtn = document.getElementById('clear-history-btn')
+  clearHistoryBtn.addEventListener('click', clearHistory)
+  
 
 buttonClick.addEventListener('click', function(event){
     event.preventDefault()
@@ -171,7 +186,6 @@ buttonClick.addEventListener('click', function(event){
     var currentCountryObject = countryDataFinder(userInputEl.value)
     console.log(currentCountryObject)
     //local storage code
-    var userCountry = userInputEl.value//variable value must be set in the function to get the value correctly
     var searchHistoryCountry = {
         name: currentCountryObject.name.common,
         code: currentCountryObject.cca2,
@@ -195,5 +209,4 @@ displayFavorites()
 //add replacement to author if no value
 //add replacement for articles if non populate
 //add catch if country info displays no values for each value type
-//make flag picture smaller to reduce pixelation
 //add catch for non country input
