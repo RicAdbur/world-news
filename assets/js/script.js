@@ -79,16 +79,23 @@ function displayNews(articles) {
         var newsAuthor = articles[i].author
         var newsUrl = articles[i].url
         
-
-        newsTitleEl.textContent = newsTitle
-        newsParaEl.textContent = newsAuthor
+         if (newsTitle===null){
+            newsTitleEl.textContent = "No news avavilable! Try a different country"
+         } else {
+            newsTitleEl.textContent = newsTitle
+        if (newsAuthor === null){
+                newsParaEl.textContent = "Unknown Author"
+            }  else {
+                newsParaEl.textContent = newsAuthor
+            }
+         }
         newsUrlEl.setAttribute("href", newsUrl)
     }
     userInputEl.value = "" //clear user entry
 
 } // displays news information in the containers
 
-function removeHidden(){
+function removeHiddenMain(){
     var mainContainer= document.getElementById('main-container')
     mainContainer.classList.remove('hidden')
 } // removes hidden class from main-container for article and info display
@@ -141,7 +148,7 @@ function displayFavorites(){
                 userInputEl.value = storedCountries[i].name
                 displayCountryInfo()
                 newsCall(storedCountries[i].code.toLowerCase())
-                removeHidden()
+                removeHiddenMain()
             })//event listener for history clicks
 
         }
@@ -207,7 +214,7 @@ buttonClick.addEventListener('click', function(event){
     displayCountryInfo()
 
         newsCall(currentCountryObject.cca2.toLowerCase())
-        removeHidden()
+        removeHiddenMain()
         displayFavorites()
     } ) // event listener for search button
  
