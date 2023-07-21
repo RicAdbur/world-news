@@ -175,6 +175,10 @@ html, body {
     width: auto;
 }
 
+#modal-text{
+    text-align:center;
+}
+
 /* Modified from code courtesy of Dalis Chan, Medium.com */
 .sidebar {
     height: 100%;
