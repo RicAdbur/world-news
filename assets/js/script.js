@@ -1,47 +1,48 @@
 var countriesListEl = document.getElementById("countries")
 var userInputEl = document.getElementById("user-selection") 
-var countryNameArray = []
-var apiKey = '6ca5adca9d894c52b90506cf4e32af81'
-var countryObjectArray = []
+var countryNameEl = document.getElementById("country-name")
 var navEl = document.querySelector("nav")
 var sidebarEl = document.getElementById("mySidebar")
-var countryNameEl = document.getElementById("country-name")
+var countryNameArray = []
+var countryObjectArray = []
+var proxyUrl = 'https://octoproxymus.herokuapp.com?secret=walrus&url='
+var apiKey = '6ca5adca9d894c52b90506cf4e32af81'
 var mini = true;
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
 
 function fetchRestAPI() {
     fetch ("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2,region,subregion,population")
-.then(function(response) {
-    return response.json()
-})
-.then(function(allCountryData) {
-    // populates the dropdown menu
-    for ( var i = 0; i < allCountryData.length; i++) {
-        if (validNewsCountries.includes(allCountryData[i].cca2.toLowerCase() ) ) {
-            var countryName = allCountryData[i].name.common
-            // console.log(countryName)
-            countryNameArray[i] = countryName
-            var dropdownListItems = document.createElement("option")
-            // dropdownListItems.text = countryNameArray[i]
-            dropdownListItems.value = countryNameArray[i]
-            countriesListEl.appendChild(dropdownListItems)
-            countryObjectArray.push(allCountryData[i])
+    .then(function(response) {
+        return response.json()
+    })
+    .then(function(allCountryData) {
+        // populates the dropdown menu
+        for ( var i = 0; i < allCountryData.length; i++) {
+            if (validNewsCountries.includes(allCountryData[i].cca2.toLowerCase() ) ) {
+                var countryName = allCountryData[i].name.common
+                // console.log(countryName)
+                countryNameArray[i] = countryName
+                var dropdownListItems = document.createElement("option")
+                // dropdownListItems.text = countryNameArray[i]
+                dropdownListItems.value = countryNameArray[i]
+                countriesListEl.appendChild(dropdownListItems)
+                countryObjectArray.push(allCountryData[i])
+            }
         }
-    }
-    
-})}
+    })
+}
 
-var proxyUrl = 'https://octoproxymus.herokuapp.com?secret=walrus&url='
 
 function newsCall(countryCode) {
     fetch (proxyUrl + encodeURIComponent('https://newsapi.org/v2/top-headlines?country='+ countryCode + '&apiKey=' + apiKey))
     .then(function(response) {
-    return response.json()
- }) .then(function(value) {
-    // console.log(value)
-    // articleArray = value.articles
-    displayNews(value.articles)
- })
+        return response.json()
+    }) 
+    .then(function(value) {
+        // console.log(value)
+        // articleArray = value.articles
+        displayNews(value.articles)
+    })
 }  //completes call to news API and runs displayNews()
 
 var buttonClick = document.getElementById('search-btn')
@@ -88,6 +89,7 @@ function displayCountryInfo() {
     var flagEL = document.getElementById("country-flag")
     var currentCountryObject = countryDataFinder(userInputEl.value)
     var pop = currentCountryObject.population
+
     populationEL.innerText = "Population: "+ new Intl.NumberFormat().format(pop)
     regionEl.innerText = "Region: "+currentCountryObject.region
     languageEl.innerText = "Language(s): "+Object.values(currentCountryObject.languages).join(", ")
@@ -115,8 +117,8 @@ function displayNews(articles) {
 } //displays news information in the containers
 
 function removeHidden(){
- var mainContainer= document.getElementById('main-container')
- mainContainer.classList.remove('hidden')
+    var mainContainer= document.getElementById('main-container')
+    mainContainer.classList.remove('hidden')
 } //removes hidden class from main-container for article and info display
 
 function setLocalStorage(searchedCountryObject){
@@ -158,8 +160,8 @@ function displayFavorites(){
 //runs on page load and any time a favorite is added, will display userFavorites as elements on the page
 
 function saveFavorite() {
- setLocalStorage(capitalizedCountry)
- displayFavorites()
+    setLocalStorage(capitalizedCountry)
+    displayFavorites()
 } //for event listener for favorite button
 
 function capitalizeFirstLetter(string) {
@@ -167,17 +169,17 @@ function capitalizeFirstLetter(string) {
 } //takes the first letter of the string, capitalizes it, concats it back into a string
 
 function toggleSidebar() {
-  if (mini) {
-    console.log("opening sidebar");
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-    this.mini = false;
-  } else {
-    console.log("closing sidebar");
-    document.getElementById("mySidebar").style.width = "85px";
-    document.getElementById("main").style.marginLeft = "85px";
-    this.mini = true;
-  } // courtesy of Dalis Chan, Medium.com
+    if (mini) {
+        console.log("opening sidebar");
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        this.mini = false;
+    } else {
+        console.log("closing sidebar");
+        document.getElementById("mySidebar").style.width = "85px";
+        document.getElementById("main").style.marginLeft = "85px";
+        this.mini = true;
+    } // courtesy of Dalis Chan, Medium.com
 }
 
 fetchRestAPI()// calls to REST API, creates country objects for all countries and sets country names in the search bar
