@@ -38,6 +38,7 @@ function newsCall(countryCode) {
         // console.log(value)
         // articleArray = value.articles
         displayNews(value.articles)
+        console.log(value.articles)
     })
 } // completes call to news API and runs displayNews()
 
@@ -100,6 +101,9 @@ function displayNews(articles) {
         var newsTitle = articles[i].title
         var newsAuthor = articles[i].author
         var newsUrl = articles[i].url
+
+        var newsImgData= articles[i].urlToImage
+        var newsImg= newsContainer.querySelector("img")
         
          if (newsTitle===null){
             newsTitleEl.textContent = "No news avavilable! Try a different country"
@@ -112,6 +116,7 @@ function displayNews(articles) {
             }
          }
         newsUrlEl.setAttribute("href", newsUrl)
+        newsImg.setAttribute("src", newsImgData)
     }
     userInputEl.value = "" //clear user entry
 
