@@ -344,6 +344,15 @@ main .sidebar {
     .info {
         height: fit-content;
     }
+
+    .news-container {
+        width: 540px;
+        height: 330px;
+    }
+
+    .news-author {
+        margin-top: 5px;
+    }
 }
 
 @media (min-width:871px) and (max-width:951px) {
