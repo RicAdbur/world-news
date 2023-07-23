@@ -105,6 +105,12 @@ function displayNews(articles) {
         var newsImgData= articles[i].urlToImage
         var newsImg= newsContainer.querySelector("img")
         
+        if (newsImgData===null){
+            newsImg.setAttribute("src", 'assets/images/daily-news-stock.jpg')
+            //TODO resize image is null, add new class
+        } else (
+            newsImg.setAttribute("src", newsImgData)
+        )
          if (newsTitle===null){
             newsTitleEl.textContent = "No news avavilable! Try a different country"
          } else {
@@ -116,7 +122,7 @@ function displayNews(articles) {
             }
          }
         newsUrlEl.setAttribute("href", newsUrl)
-        newsImg.setAttribute("src", newsImgData)
+        
     }
     userInputEl.value = "" //clear user entry
 
