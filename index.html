@@ -20,6 +20,7 @@
 <body>
     <nav class="hidden">
         <!-- Modified from code courtesy of Dalis Chan, Medium.com -->
+        <!-- History Container in side bar -->
         <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
             <a id="clear-history-btn" class="">
                 <i class="fas fa-times fa-2x" id="clear-icon"></i> Clear History
@@ -30,14 +31,14 @@
         <header class="section">
 
             <div class="search-section">
-
+                <!-- Site Logo -->
                 <div class="columns is-centered">
                     <div class="column search-column">
                         <figure class="image is-fullwidth">
                             <img src="assets/images/news-world-3.png" alt="news world logo" class="logo is-centered">
                             <form action="">
                         </figure>
-
+                        <!-- Seach bar -->
                         <form class="columns form">
                             <input id="user-selection" class="input column" type="text"
                                 placeholder="Enter a country name" list="countries">
@@ -53,7 +54,7 @@
         </header>
 
         <main id="main-container" class="section hidden">
-
+        <!-- News Info Container -->
             <div id="main-info-container" class="box">
                 <h2 class="title has-text-centered">Latest News in <span id="country-name">{Country}</span></h2>
                 <div class="columns is-multiline is-centered">
@@ -76,6 +77,8 @@
                         </div>
                     </a>
                 </div>
+
+            <!-- Country Info Container-->
                 <div class="columns" id="data-display">
                     <div class="column flag-div">
                         <img id="country-flag" src="" alt="country flag">
