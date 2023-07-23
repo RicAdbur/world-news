@@ -121,7 +121,10 @@ datalist {
   
 a.news {
     border: 1px solid black;
-    font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace; 
+    font-family: 'Droid Serif', serif;
+    text-shadow: white 0px 0px 5px;
+    background: radial-gradient(circle, white 30%, rgb(177, 176, 176) 100%);
+    font-size: 18px;
 }
 
 a.news:hover {
