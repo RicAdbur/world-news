@@ -6,6 +6,7 @@ var countryObjectArray = []
 var proxyUrl = 'https://octoproxymus.herokuapp.com?secret=walrus&url='
 var apiKey = '16fd0419d9a245f9881c879b46493a80'
 var mini = true;
+var clearHistoryBtn = document.getElementById('clear-history-btn')
 
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
 
@@ -211,80 +212,66 @@ function clearHistory() {
   
     // Update the displayed favorites in the navigation
     displayFavorites()
-  }
+}
 
-  var clearHistoryBtn = document.getElementById('clear-history-btn')
-  clearHistoryBtn.addEventListener('click', clearHistory)
+clearHistoryBtn.addEventListener('click', clearHistory)
   
-
 buttonClick.addEventListener('click', function(event){
-    event.preventDefault()
+      event.preventDefault()
+      
+      // console.log(userInputEl.value)
+      var currentCountryObject = countryDataFinder(userInputEl.value)
+       if (currentCountryObject === null) {
+          return;
+           }
+      //local storage code
+      var searchHistoryCountry = {
+          name: currentCountryObject.name.common,
+          code: currentCountryObject.cca2,
+      }
+      setLocalStorage(searchHistoryCountry)
+      //local storage code
+      displayCountryInfo()
+  
+          newsCall(currentCountryObject.cca2.toLowerCase())
+          removeHiddenMain()
+          displayFavorites()
+} ) // event listener for search button
     
-    // console.log(userInputEl.value)
-    var currentCountryObject = countryDataFinder(userInputEl.value)
-     if (currentCountryObject === null) {
-        return;
-         }
-    //local storage code
-    var searchHistoryCountry = {
-        name: currentCountryObject.name.common,
-        code: currentCountryObject.cca2,
-    }
-    setLocalStorage(searchHistoryCountry)
-    //local storage code
-    displayCountryInfo()
-
-        newsCall(currentCountryObject.cca2.toLowerCase())
-        removeHiddenMain()
-        displayFavorites()
-    } ) // event listener for search button
- 
- 
-
 document.addEventListener('DOMContentLoaded', () => {
-
-      // Functions to open and close a modal
-  function openModal($el) {
-    $el.classList.add('is-active');
-  }
-
-  function closeModal($el) {
-    $el.classList.remove('is-active');
-  }
-
-    // Add a click event on buttons to open a specific modal
-    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-      const modal = $trigger.dataset.target;
-      const $target = document.getElementById(modal);
   
-      $trigger.addEventListener('click', () => {
-        var currentCountryObject = countryDataFinder(userInputEl.value)
-        if (currentCountryObject === null) {
-        openModal($target);
-        }
+        // Functions to open and close a modal
+    function openModal($el) {
+      $el.classList.add('is-active');
+    }
+  
+    function closeModal($el) {
+      $el.classList.remove('is-active');
+    }
+  
+      // Add a click event on buttons to open a specific modal
+      (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+        const modal = $trigger.dataset.target;
+        const $target = document.getElementById(modal);
+    
+        $trigger.addEventListener('click', () => {
+          var currentCountryObject = countryDataFinder(userInputEl.value)
+          if (currentCountryObject === null) {
+          openModal($target);
+          }
+        });
       });
-    });
-  
-    // Add a click event on various child elements to close the parent modal
-    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-      const $target = $close.closest('.modal');
-  
-      $close.addEventListener('click', () => {
-        closeModal($target);
+    
+      // Add a click event on various child elements to close the parent modal
+      (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+        const $target = $close.closest('.modal');
+    
+        $close.addEventListener('click', () => {
+          closeModal($target);
+        });
       });
-    });
-  }); // Bulma Modal functions
-
+}); // Bulma Modal functions
 
 fetchRestAPI() // calls to REST API, creates country objects for all countries and sets country names in the search bar
-
+  
 displayFavorites()
-
-//TODO
-
-//add blank loading... values to news cards to show before article loads, add in HTML elements
-//format news cards
-//add html comments
-//add js comments
-//clean up css, remove duplicates
-//add css comments
