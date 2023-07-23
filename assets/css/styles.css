@@ -179,6 +179,19 @@ html, body {
     text-align:center;
 }
 
+.news-img{
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.news-img-null {
+    width: 50%;
+}
+
+.news-img:hover{
+    border: 1px solid var(--bulma-primary)
+}
+
 /* Modified from code courtesy of Dalis Chan, Medium.com */
 .sidebar {
     height: 100%;

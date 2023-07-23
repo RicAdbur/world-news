@@ -107,10 +107,11 @@ function displayNews(articles) {
         
         if (newsImgData===null){
             newsImg.setAttribute("src", 'assets/images/daily-news-stock.jpg')
-            //TODO resize image is null, add new class
-        } else (
+            newsImg.classList.add('news-img-null')
+        } else {
             newsImg.setAttribute("src", newsImgData)
-        )
+            newsImg.classList.remove('news-img-null')
+        }
          if (newsTitle===null){
             newsTitleEl.textContent = "No news avavilable! Try a different country"
          } else {
