@@ -111,7 +111,7 @@ function displayNews(articles) {
         } else {
             newsImg.setAttribute("src", newsImgData)
             newsImg.classList.remove('news-img-null')
-        }
+    }
          if (newsTitle===null){
             newsTitleEl.textContent = "No news avavilable! Try a different country"
          } else {
@@ -119,7 +119,7 @@ function displayNews(articles) {
         if (newsAuthor === null){
                 newsParaEl.textContent = "Unknown Author"
             }  else {
-                newsParaEl.textContent = newsAuthor
+                newsParaEl.textContent = "Author: "+newsAuthor
             }
          }
         newsUrlEl.setAttribute("href", newsUrl)
