@@ -71,10 +71,6 @@ datalist {
     flex: 1;
     padding: 0.5rem;
 }
-
-#data-display.columns {
-    height: 150px;
-}
   
 /* flag */
 #country-flag {
@@ -87,10 +83,11 @@ datalist {
     height: fit-content;
 }
 
-#data-display.columns {
-    height: 150px;
+#data-display {
     display: flex;
-    align-items: flex-start;
+    /* align-items: center; */
+    justify-content: space-between;
+    text-align: center;
 }
 
 /* flag column */
@@ -116,6 +113,7 @@ datalist {
     flex-shrink: 1;
     overflow: hidden;
     font-size: clamp(11px, 2.3vw, 1rem);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
   
@@ -149,7 +147,7 @@ a.news:hover::before {
 }
 
 #main-info-container{
-    background: linear-gradient(to bottom, lightgrey, grey);
+    background: linear-gradient(to bottom, white, grey);
 }
 
 .country-info {
