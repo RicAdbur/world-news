@@ -184,11 +184,9 @@ html, body {
 .news-img{
     border-radius: 5px;
     border: 1px solid black; 
-    
-}
-
-.news-img-null {
-    width: 50%;
+    width: 300px;
+    height: 200px;
+    margin: 10px;
 }
 
 .news-img:hover{

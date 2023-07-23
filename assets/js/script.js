@@ -106,11 +106,9 @@ function displayNews(articles) {
         var newsImg= newsContainer.querySelector("img")
         
         if (newsImgData===null){
-            newsImg.setAttribute("src", 'assets/images/daily-news-stock.jpg')
-            newsImg.classList.add('news-img-null')
+            newsImg.setAttribute("src", 'assets/images/daily-news-stock.jpg') 
         } else {
             newsImg.setAttribute("src", newsImgData)
-            newsImg.classList.remove('news-img-null')
     }
          if (newsTitle===null){
             newsTitleEl.textContent = "No news avavilable! Try a different country"
