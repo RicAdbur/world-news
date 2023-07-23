@@ -166,6 +166,24 @@ a.news:hover::before {
     display: none !important;
 }
 
+.invisible {
+    visibility: hidden;
+}
+
+.news-title {
+    position: relative;
+}
+
+.news-title::after {
+    content: "_";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .flag-placeholder {
     width: 33px;
     height: 32px;
@@ -417,6 +435,5 @@ main .sidebar {
         flex-direction: column;
     }
 }
-
 
 

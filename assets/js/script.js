@@ -4,7 +4,7 @@ var sidebarEl = document.getElementById("mySidebar")
 var buttonClick = document.getElementById('search-btn')
 var countryObjectArray = []
 var proxyUrl = 'https://octoproxymus.herokuapp.com?secret=walrus&url='
-var apiKey = '16fd0419d9a245f9881c879b46493a80'
+var apiKey = '41f1f6404e4148378dc8f71e86851acf'
 var mini = true;
 var clearHistoryBtn = document.getElementById('clear-history-btn')
 
@@ -92,8 +92,17 @@ function displayCountryInfo() {
 } // displays user selected country info on page
 
 function displayNews(articles) {
+    var maxLength = 0
+
+    // Find the length of the longest newsTitle among the three
     for (var i = 0; i < 3; i++) {
-        var newsContainer = document.getElementById('news-container-' +i)
+        if (articles[i].title && articles[i].title.length > maxLength) {
+            maxLength = articles[i].title.length
+        }
+    }
+
+    for (var i = 0; i < 3; i++) {
+        var newsContainer = document.getElementById('news-container-' + i)
         var newsTitleEl = newsContainer.querySelector('h2')
         var newsParaEl = newsContainer.querySelector('p')
         var newsUrlEl = newsContainer.parentElement
@@ -102,30 +111,48 @@ function displayNews(articles) {
         var newsAuthor = articles[i].author
         var newsUrl = articles[i].url
 
-        var newsImgData= articles[i].urlToImage
-        var newsImg= newsContainer.querySelector("img")
-        
-        if (newsImgData===null){
-            newsImg.setAttribute("src", 'assets/images/daily-news-stock.jpg') 
+        var newsImgData = articles[i].urlToImage
+        var newsImg = newsContainer.querySelector("img")
+
+        if (newsImgData === null) {
+            newsImg.setAttribute("src", 'assets/images/daily-news-stock.jpg')
         } else {
             newsImg.setAttribute("src", newsImgData)
-    }
-         if (newsTitle===null){
-            newsTitleEl.textContent = "No news avavilable! Try a different country"
-         } else {
-            newsTitleEl.textContent = newsTitle
-        if (newsAuthor === null){
-                newsParaEl.textContent = "Unknown Author"
-            }  else {
-                newsParaEl.textContent = "Author: "+newsAuthor
+        }
+
+        if (newsTitle === null) {
+            newsTitleEl.textContent = "No news available! Try a different country"
+        } else {
+            // Calculate the number of underscores to add (cut by half)
+            var numUnderscoresToAdd = Math.ceil((maxLength - newsTitle.length) / 2);
+            var underscores = ""
+
+            // Add the required number of underscores with spaces
+            for (var j = 0; j < numUnderscoresToAdd; j++) {
+                underscores += "_ "
             }
-         }
+
+            // Create a span element for underscores and add the class "invisible"
+            var underscoreSpan = document.createElement('span')
+            underscoreSpan.textContent = underscores
+            underscoreSpan.classList.add('invisible')
+
+            // Append the span to the newsTitleEl
+            newsTitleEl.textContent = ""
+            newsTitleEl.appendChild(document.createTextNode(newsTitle))
+            newsTitleEl.appendChild(underscoreSpan)
+        }
+
+        if (newsAuthor === null) {
+            newsParaEl.textContent = "Unknown Author"
+        } else {
+            newsParaEl.textContent = "Author: " + newsAuthor
+        }
+
         newsUrlEl.setAttribute("href", newsUrl)
-        
     }
     userInputEl.value = "" //clear user entry
-
-} // displays news information in the containers
+}
 
 function removeHiddenMain(){
     var mainContainer= document.getElementById('main-container')
