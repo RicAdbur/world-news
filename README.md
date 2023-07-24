@@ -8,10 +8,6 @@ This application allows the user to search by country, and then displays news ar
 
 N/A
 
-## Usage
-
-Open your web browser and visit "https://ricadbur.github.io/world-news/"
-
 ## Features
 -Search by list of countried that News API provides articles for
 -If a valid country value is not entered, a modal will activate displaying a help message
