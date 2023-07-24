@@ -65,7 +65,10 @@ datalist {
 .search-column {
     padding-top: 0;
     padding-bottom: 0;
+        height: auto;
+        width: auto;
 }
+
 
 .column {
     flex: 1;
@@ -427,6 +430,10 @@ main .sidebar {
         margin-right: auto;
     }
 
+    .search-column {
+        height: auto;
+        width: auto;
+    }
    
 }
 
