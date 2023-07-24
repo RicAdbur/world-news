@@ -131,6 +131,7 @@ function displayNews(articles) {
             for (var j = 0; j < numUnderscoresToAdd; j++) {
                 underscores += "_ "
             }
+            underscores+"_______________"
 
             // Create a span element for underscores and add the class "invisible"
             var underscoreSpan = document.createElement('span')

@@ -446,4 +446,9 @@ main .sidebar {
     }
 }
 
-
+@media (max-width:450px){
+    .news-img{
+        height: auto;
+        width: auto;
+    }
+}
