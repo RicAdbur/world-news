@@ -2,25 +2,11 @@
     --bulma-primary:#00d1b2;
 }
 
-html, body {
-    overflow-x: hidden;
-}
-  
 body {
     background-color: hsl(0, 0%, 21%);
     height: 100vh;
 }
   
-/* Form style */
-input {
-    margin-top: 2rem;
-}
-  
-/* dropdown style */
-datalist { 
-    position: absolute;
-}
-
 /* logo style */
 .logo {
     display: block;
@@ -32,24 +18,16 @@ datalist {
  
 #main-info-container {
     padding-bottom: 0 !important;
-    background: linear-gradient(to bottom, lightgrey, grey);
 }
 
-#main-info-container .columns {
-    display: flex;
+/* Form style */
+input {
+    margin-top: 2rem;
 }
-
-.news-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-
-.news-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+  
+/* dropdown style */
+datalist { 
+    position: absolute;
 }
   
 /* serch button */
@@ -60,11 +38,15 @@ datalist {
 /* news cards */
 .news {
     min-height: 6rem;
+}
+  
+.news {
     margin-bottom: 1rem !important;
     margin-left: .5rem !important;
     margin-right: .5rem !important;
     /* background: rgb(200,200,200);
     background: radial-gradient(circle, rgba(200,200,200,1) 0%, rgba(133,133,133,1) 100%); */
+    position: relative;
 }
   
 /* main data display div */
@@ -83,7 +65,10 @@ datalist {
 .search-column {
     padding-top: 0;
     padding-bottom: 0;
+        height: auto;
+        width: auto;
 }
+
 
 .column {
     flex: 1;
@@ -93,28 +78,28 @@ datalist {
 /* flag */
 #country-flag {
     width: 136px;
-    transform: translate(-6px, -19.5px);
+    transform: translate(4px, -19.5px);
     align-self: flex-start;
 }
 
-#data-display.columns {
-    height: 150px;
-    display: flex;
-    align-items: flex-start;
+.info {
+    height: fit-content;
 }
 
 #data-display {
     display: flex;
-    align-items: flex-start;
+    /* align-items: center; */
+    justify-content: space-between;
+    text-align: center;
 }
 
 /* flag column */
 .flag-div {
     display: flex;
     flex: 0 0 auto;
-    flex-shrink: 1;
-    /* align-items: flex-start;
-    overflow: hidden; */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 /* Shrink the font size to fit the container when it becomes too small */
@@ -126,17 +111,28 @@ datalist {
 .desc-div {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    /* margin-left: 0.5rem; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 0.5rem;
     flex-shrink: 1;
-    /* overflow: hidden; */
+    overflow: hidden;
     font-size: clamp(11px, 2.3vw, 1rem);
-    padding-bottom: 2rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.desc-div p {
+    margin-right: 20px;
+}
+
+  
 a.news {
     border: 1px solid black;
+    font-family: 'Droid Serif', serif;
+    text-shadow: white 0px 0px 5px;
+    background: radial-gradient(circle, white 30%, rgb(177, 176, 176) 100%);
+    font-size: 18px;
 }
 
 a.news:hover {
@@ -150,10 +146,18 @@ a.news:hover::before {
     border: 1px solid black;
     transition: all .5s;
 }
-/* x icon in sidebar */
-#clear-icon {
+
+/* clear history text */
+#clear-history-btn i {
     margin-right: 24px;
-    transform: translate(-2px, 0px);
+}
+
+#clear-icon {
+    transform: translate(-2px, 7px);
+}
+
+#main-info-container{
+    background: linear-gradient(to bottom, white, grey);
 }
 
 .country-info {
@@ -165,11 +169,33 @@ a.news:hover::before {
     display: none !important;
 }
 
+.invisible {
+    visibility: hidden;
+}
+
+.news-title {
+    position: relative;
+}
+
+.news-title::after {
+    content: "_";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .flag-placeholder {
     width: 33px;
     height: 32px;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+  
 .modal {
     max-width: 100%;
     width: auto;
@@ -184,6 +210,40 @@ a.news:hover::before {
     text-align:center;
 }
 
+.news-img{
+    border-radius: 5px;
+    border: 1px solid black; 
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+}
+
+.news-img:hover{
+    border: 1px solid var(--bulma-primary)
+}
+
+.news-author {
+    margin-top: 20px;
+    margin-left: auto;
+}
+
+.news {
+    min-height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.news-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.news-desc {
+    text-align: center;
+}
 /* Modified from code courtesy of Dalis Chan, Medium.com */
 .sidebar {
     height: 100%;
@@ -206,19 +266,17 @@ a.news:hover::before {
     font-size: 1rem;
     color: #818181;
     display: block;
-  }
-
-/* Target just the text inside .sidebar a */
-.sidebar a span {
-    display: inline-block;
-    transform: translate(0, -7px);
-  }
-
+}
+  
 .sidebar a:hover {
     color: #f1f1f1;
     background-color: #1f1e1e;
 }
 
+.sidebar img {
+    margin-right: 20px;
+}
+  
 main .sidebar {
     position: absolute;
     top: 0;
@@ -226,12 +284,21 @@ main .sidebar {
     font-size: 36px;
     margin-left: 50px;
 }
-
-#mySidebar img {
-    margin-right: 20px;
-    transform: translate(-6px, 2px);
+  
+/* .flag-icons, */
+.button-text {
+    vertical-align: middle;
 }
   
+#mySidebar img {
+    transform: translate(-6px, 13px);
+}
+  
+/* .flag-icons {
+    padding-bottom: 3px;
+    margin-right: 30px;
+} */
+
 #main {
     /* padding: 16px; */
     margin-left: 85px;
@@ -241,7 +308,6 @@ main .sidebar {
 .margin-correction {
     transform: translateX(-50px);
 }
-
 /* Media queries */
 @media screen and (max-width:870px) {
     header {
@@ -273,6 +339,10 @@ main .sidebar {
         width: 97% !important;
     }
 
+    .desc-div{
+        flex-direction: column;
+    }
+
     .logo {
         margin-top: 0;
     }
@@ -302,10 +372,13 @@ main .sidebar {
         height: fit-content;
     }
 
-    .news-img {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
+    .news-container {
+        width: 540px;
+        height: 330px;
+    }
+
+    .news-author {
+        margin-top: 5px;
     }
 }
 
@@ -356,5 +429,34 @@ main .sidebar {
         width: 50rem;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .search-column {
+        height: auto;
+        width: auto;
+    }
+   
+}
+
+@media (max-width:951px) {
+    #data-display {
+        flex-direction: column;
+    }
+
+    .news-author {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .news-container {
+        height: auto;
+        width: auto;
+    }
+}
+
+@media (max-width:450px){
+    .news-img{
+        height: auto;
+        width: auto;
     }
 }
