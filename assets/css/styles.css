@@ -231,13 +231,14 @@ html, body {
     min-height: 6rem;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .news-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .news-desc {
