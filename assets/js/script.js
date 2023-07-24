@@ -11,23 +11,31 @@ var clearHistoryBtn = document.getElementById('clear-history-btn')
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
 
 function fetchRestAPI() {
-    fetch ("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2,region,subregion,population")
-    .then(function(response) {
-        return response.json()
-    })
-    .then(function(allCountryData) {
-        // populates the dropdown menu options to the id in datalist
-        for ( var i = 0; i < allCountryData.length; i++) {
-            if (validNewsCountries.includes(allCountryData[i].cca2.toLowerCase() ) ) {
+    fetch("https://restcountries.com/v3.1/independent?status=true&fields=name,languages,capital,cca2,region,subregion,population")
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (allCountryData) {
+            // Filter valid news countries
+            var validCountries = allCountryData.filter(function (country) {
+                return validNewsCountries.includes(country.cca2.toLowerCase())
+            })
+
+            // Sort the valid countries array alphabetically based on country name
+            validCountries.sort(function (a, b) {
+                return a.name.common.localeCompare(b.name.common)
+            })
+
+            // populates the dropdown menu options to the id in datalist
+            var countriesListEl = document.getElementById("countries")
+            for (var i = 0; i < validCountries.length; i++) {
                 var dropdownListItems = document.createElement("option")
-                var countriesListEl = document.getElementById("countries")
-                dropdownListItems.value = allCountryData[i].name.common
+                dropdownListItems.value = validCountries[i].name.common
                 countriesListEl.appendChild(dropdownListItems)
-                countryObjectArray.push(allCountryData[i])
+                countryObjectArray.push(validCountries[i])
             }
-        }
-    })
-} // RestAPI fetch request
+        })
+} // RestAPI fetch request, also pulls names of countries into search bar in alphabetical order
 
 function newsCall(countryCode) {
     fetch (proxyUrl + encodeURIComponent('https://newsapi.org/v2/top-headlines?country='+ countryCode + '&apiKey=' + apiKey))
@@ -49,7 +57,7 @@ function countryDataFinder(countryName) {
         } 
     }
     return null
-} // selects country object based on user input value TODO add catch for incorrect inputs
+} // selects country object based on user input value
 
 function displayCountryInfo() {
     var countryNameEl = document.getElementById("country-name")
@@ -89,7 +97,7 @@ function displayCountryInfo() {
         
     countryNameEl.innerText = currentCountryObject.name.common
     
-} // displays user selected country info on page
+} // displays user selected country info on page, has catches if null data is retrieved
 
 function displayNews(articles) {
     var maxLength = 0
@@ -100,7 +108,7 @@ function displayNews(articles) {
             maxLength = articles[i].title.length
         }
     }
-
+    //append the data into the html
     for (var i = 0; i < 3; i++) {
         var newsContainer = document.getElementById('news-container-' + i)
         var newsTitleEl = newsContainer.querySelector('h2')
@@ -131,7 +139,6 @@ function displayNews(articles) {
             for (var j = 0; j < numUnderscoresToAdd; j++) {
                 underscores += "_ "
             }
-            underscores+"_______________"
 
             // Create a span element for underscores and add the class "invisible"
             var underscoreSpan = document.createElement('span')
@@ -153,7 +160,7 @@ function displayNews(articles) {
         newsUrlEl.setAttribute("href", newsUrl)
     }
     userInputEl.value = "" //clear user entry
-}
+} //displays news data into the cards in the html
 
 function removeHiddenMain(){
     var mainContainer= document.getElementById('main-container')
