@@ -434,6 +434,16 @@ main .sidebar {
     #data-display {
         flex-direction: column;
     }
+
+    .news-author {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .news-container {
+        height: auto;
+        width: auto;
+    }
 }
 
 
