@@ -226,7 +226,12 @@ html, body {
 .news-author {
     margin-top: 20px;
     margin-left: auto;
+    font-size: auto;
+    overflow: hidden;         
+    text-overflow: ellipsis;  
+    max-width: 300px;         
 }
+
 
 .news {
     min-height: 6rem;

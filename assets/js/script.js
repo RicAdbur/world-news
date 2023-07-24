@@ -137,7 +137,7 @@ function displayNews(articles) {
 
             // Add the required number of underscores with spaces
             for (var j = 0; j < numUnderscoresToAdd; j++) {
-                underscores += "_ "
+                underscores += " _"
             }
 
             // Create a span element for underscores and add the class "invisible"
