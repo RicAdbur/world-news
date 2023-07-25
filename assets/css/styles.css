@@ -15,22 +15,27 @@ body {
     width: 65%;
     margin-top: 3rem;
 }
- 
+
 #main-info-container {
     padding-bottom: 0;
     border: 1px solid var(--bulma-primary);
+    background: linear-gradient(to bottom, white, grey);
 }
 
 /* Form style */
 input {
     margin-top: 2rem;
 }
-  
+
 /* dropdown style */
 datalist { 
     position: absolute;
 }
-  
+
+html, body {
+    overflow-x: hidden;
+}
+
 /* serch button */
 #search-btn {
     margin-top: 1rem;
@@ -148,18 +153,15 @@ a.news:hover::before {
     transition: all .5s;
 }
 
-/* clear history text */
-#clear-history-btn i {
-    margin-right: 24px;
-}
-
 #clear-icon {
-    transform: translate(-2px, 7px);
+    margin-right: 29px;
+    transform: translate(-2px, 1px);
 }
 
-#main-info-container{
-    background: linear-gradient(to bottom, white, grey);
+span #clear-history {
+    transform: translate(0, -30px);
 }
+
 
 .country-info {
     color: white ;
@@ -193,9 +195,6 @@ a.news:hover::before {
     height: 32px;
 }
 
-html, body {
-    overflow-x: hidden;
-}
   
 .modal {
     max-width: 100%;
@@ -271,7 +270,13 @@ html, body {
     text-decoration: none;
     font-size: 1rem;
     color: #818181;
-    display: block;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar a span.button-text {
+    display: inline-flex;
+    align-items: center;
 }
   
 .sidebar a:hover {
@@ -279,10 +284,7 @@ html, body {
     background-color: #1f1e1e;
 }
 
-.sidebar img {
-    margin-right: 20px;
-}
-  
+
 main .sidebar {
     position: absolute;
     top: 0;
@@ -290,14 +292,11 @@ main .sidebar {
     font-size: 36px;
     margin-left: 50px;
 }
-  
-/* .flag-icons, */
-.button-text {
-    vertical-align: middle;
-}
-  
+
 #mySidebar img {
-    transform: translate(-6px, 13px);
+    margin-right: 21px;
+    transform: translate(-5px, 0);
+    width: 32px;
 }
   
 /* .flag-icons {
