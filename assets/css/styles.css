@@ -240,6 +240,7 @@ span #clear-history {
     margin-left: auto;
     margin-bottom: 5px;
     font-size: 1rem;
+    line-height: 1.1rem;
     overflow: hidden;         
     text-overflow: ellipsis;  
     padding: 6px;
