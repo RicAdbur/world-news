@@ -238,11 +238,14 @@ span #clear-history {
 .news-author {
     margin-top: 20px;
     margin-left: auto;
+    margin-bottom: 5px;
     font-size: 1rem;
     overflow: hidden;         
     text-overflow: ellipsis;  
     padding: 6px;
     text-align: end;
+    height: 24px;
+    color: #818181;
 }
 
 .news {
@@ -353,7 +356,7 @@ main .sidebar {
 
     .columns {
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: flex-start;
     }
@@ -367,7 +370,7 @@ main .sidebar {
         margin-bottom: 1rem !important;
         margin-left: .5rem !important;
         margin-right: .5rem !important;
-        width: 97% !important;
+        width: 100% !important;
     }
 
     .desc-div{
@@ -412,17 +415,52 @@ main .sidebar {
     .news-container {
         height: auto;
         width: 100%;
+        display: flex;
+        flex-grow: 1;
+    }
+
+    .news-img {
+        border-radius: 5px;
+        border: 1px solid black; 
+        width: 95%;
+        height: 200px;
+        /* margin: 10px; */
+        object-fit: cover;
+    }
+
+    .news-desc {
+        text-align: left;
+        width: 95%;
+        height: 84px;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        padding-top: 0;
     }
 
     .news-author {
         margin-top: 20px;
         margin-left: auto;
-        font-size: 1rem;
-        overflow: hidden;         
+        margin-bottom: 5px;
+        font-size: .8rem;  
         text-overflow: ellipsis;
-        padding: 6px;
+        padding-right: 16px;
         text-align: end;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
+
+    #main-info-container .columns {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+      /* Set flex-basis to 100% for the .box.news elements to take full width */
+      #main-info-container .columns .box.news {
+        flex-basis: 97%;
+      }
 }
 
 @media (min-width:871px) and (max-width:951px) {
@@ -451,6 +489,7 @@ main .sidebar {
         margin-left: auto;
         margin-right: auto;
     }
+
     #data-display {
         flex-direction: column;
     }
