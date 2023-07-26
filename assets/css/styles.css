@@ -142,6 +142,7 @@ html, body {
 .desc-div p {
     margin-right: 20px;
 }
+
   
 a.news {
     border: 1px solid black;
@@ -237,12 +238,12 @@ span #clear-history {
 .news-author {
     margin-top: 20px;
     margin-left: auto;
-    font-size: auto;
+    font-size: 1rem;
     overflow: hidden;         
     text-overflow: ellipsis;  
-    max-width: 300px;         
+    padding: 6px;
+    text-align: end;
 }
-
 
 .news {
     min-height: 6rem;
@@ -261,9 +262,17 @@ span #clear-history {
 
 .news-desc {
     text-align: left;
-    margin: 10px;
+    margin-left: 6px;
+    margin-right: 6px;
     width: 95%;
+    height: 110px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Change this number to the desired number of lines to show */
+    -webkit-box-orient: vertical;
+    padding-top: 0;
 }
+
 /* Modified from code courtesy of Dalis Chan, Medium.com */
 .sidebar {
     height: 100%;
@@ -314,11 +323,6 @@ main .sidebar {
     width: 32px;
 }
 
-/* .flag-icons {
-    padding-bottom: 3px;
-    margin-right: 30px;
-} */
-
 #main {
     /* padding: 16px; */
     margin-left: 85px;
@@ -336,7 +340,7 @@ main .sidebar {
     }
 }
 
-@media (max-width:870px) {
+@media (max-width: 870px) {
     header {
         padding-top: 2rem !important;
     }
@@ -385,10 +389,6 @@ main .sidebar {
         margin-left: auto;
         margin-right: auto;
     }
-
-    .columns.is-multiline .box.news {
-        flex: 1 0 100%;
-    }
     
     .search-column {
         padding-top: 0;
@@ -399,26 +399,29 @@ main .sidebar {
         height: fit-content;
     }
 
-    .news-container {
-        width: 540px;
-        height: 330px;
-    }
-
-    .news-author {
-        margin-top: 5px;
-    }
     #data-display {
         flex-direction: column;
     }
     
-    .news-author {
-        padding: 0px;
-        margin: 0px;
+    /* Set the flex direction to vertical for the .news-container divs */
+    .columns.is-multiline .box.news {
+        flex: 1 0 100%;
+        flex-direction: column;
     }
     
     .news-container {
         height: auto;
-        width: auto;
+        width: 100%;
+    }
+
+    .news-author {
+        margin-top: 20px;
+        margin-left: auto;
+        font-size: 1rem;
+        overflow: hidden;         
+        text-overflow: ellipsis;
+        padding: 6px;
+        text-align: end;
     }
 }
 
@@ -452,14 +455,19 @@ main .sidebar {
         flex-direction: column;
     }
     
-    .news-author {
-        padding: 0px;
-        margin: 0px;
-    }
-    
     .news-container {
         height: auto;
         width: auto;
+    }
+
+    .news-author {
+        margin-top: 20px;
+        margin-left: auto;
+        font-size: 1rem;
+        overflow: hidden;         
+        text-overflow: ellipsis;
+        padding: 6px;
+        text-align: end;
     }
 }
 
