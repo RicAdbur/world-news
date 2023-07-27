@@ -49,7 +49,7 @@ function newsCall(countryCode) {
         // console.log(value)
         // articleArray = value.articles
         displayNews(value.articles)
-        console.log(value.articles)
+        // console.log(value.articles)
     })
 } // completes call to news API and runs displayNews()
 
@@ -103,23 +103,19 @@ function displayCountryInfo() {
     aboutContainerHeading.innerText = currentCountryObject.name.common;
     
 } // displays user selected country info on page, has catches if null data is retrieved
+async function translateAndDisplayTitles(articles) {
+    // Create an array of translation promises for titles
+    const translationPromises = articles.map((article) => translateTitle(article.title))
+
+    return await Promise.all(translationPromises)
+}
 
 async function displayNews(articles) {
     var maxLength = 0
 
-    async function translateAndDisplayTitles() {
-        async function translateTitleAndDisplay(title) {
-            const translatedTitle = await translateTitle(title);
-            return translatedTitle
-        }
+    
 
-        // Create an array of translation promises for titles
-        const translationPromises = articles.map((article) => translateTitleAndDisplay(article.title))
-
-        return await Promise.all(translationPromises)
-    }
-
-    const translatedTitles = await translateAndDisplayTitles()
+    const translatedTitles = await translateAndDisplayTitles(articles)
 
     for (var i = 0; i < 3; i++) {
         var newsContainer = document.getElementById('news-container-' + i)
@@ -291,9 +287,10 @@ async function translateTitle(title) {
     try {
         const response = await fetch(url)
         const data = await response.json()
+        console.log("translation response", data)
 
         if (data && data[0] && data[0][0] && data[0][0][0]) {
-            console.log(data[0][0])
+            // console.log(data[0][0])
             return data[0][0][0] // Return the translated title
         } else {
             return title // If translation fails, use the original title
