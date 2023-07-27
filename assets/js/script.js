@@ -99,63 +99,76 @@ function displayCountryInfo() {
     
 } // displays user selected country info on page, has catches if null data is retrieved
 
-function displayNews(articles) {
+async function displayNews(articles) {
     var maxLength = 0
 
-    // Find the length of the longest newsTitle among the three
-    for (var i = 0; i < 3; i++) {
-        if (articles[i].title && articles[i].title.length > maxLength) {
-            maxLength = articles[i].title.length
+    async function translateAndDisplayTitles() {
+        async function translateTitleAndDisplay(title) {
+            const translatedTitle = await translateTitle(title);
+            return translatedTitle
         }
+
+        // Create an array of translation promises for titles
+        const translationPromises = articles.map((article) => translateTitleAndDisplay(article.title))
+
+        return await Promise.all(translationPromises)
     }
-    //append the data into the html
+
+    const translatedTitles = await translateAndDisplayTitles()
+
     for (var i = 0; i < 3; i++) {
         var newsContainer = document.getElementById('news-container-' + i)
         var newsTitleEl = newsContainer.querySelector('h2')
         var newsParaEl = newsContainer.querySelector('p')
         var newsUrlEl = newsContainer.parentElement
 
-        var newsTitle = articles[i].title
+        var newsTitle = translatedTitles[i]
         var newsAuthor = articles[i].author
         var newsUrl = articles[i].url
-
         var newsImgData = articles[i].urlToImage
         var newsImg = newsContainer.querySelector("img")
 
-        if (newsImgData === null) {
-            newsImg.setAttribute("src", 'assets/images/daily-news-stock.jpg')
-        } else {
-            newsImg.setAttribute("src", newsImgData)
+    // check if the newsTitle contains a '-'
+    if (newsTitle.includes('-')) {
+        var lastDashIndex = newsTitle.lastIndexOf(' - ')
+        newsTitle = newsTitle.substring(0, lastDashIndex).trim()
+    }
+    
+    if (newsImgData === null) {
+        newsImg.setAttribute("src", 'assets/images/daily-news-stock.jpg')
+    } else {
+        newsImg.setAttribute("src", newsImgData)
+    }
+
+    if (newsTitle === null) {
+        newsTitleEl.textContent = "No news available! Try a different country"
+    } else {
+        // Calculate the number of underscores to add (cut by half)
+        var numUnderscoresToAdd = Math.ceil((maxLength - newsTitle.length) / 2)
+        var underscores = ""
+
+        // Add the required number of underscores with spaces
+        for (var j = 0; j < numUnderscoresToAdd; j++) {
+            underscores += " _"
         }
 
-        if (newsTitle === null) {
-            newsTitleEl.textContent = "No news available! Try a different country"
-        } else {
-            // Calculate the number of underscores to add (cut by half)
-            var numUnderscoresToAdd = Math.ceil((maxLength - newsTitle.length) / 2);
-            var underscores = ""
+        // Create a span element for underscores and add the class "invisible"
+        var underscoreSpan = document.createElement('span')
+        underscoreSpan.textContent = underscores
+        underscoreSpan.classList.add('invisible')
 
-            // Add the required number of underscores with spaces
-            for (var j = 0; j < numUnderscoresToAdd; j++) {
-                underscores += " _"
-            }
+        // Append the span to the newsTitleEl
+        newsTitleEl.textContent = ""
+        newsTitleEl.appendChild(document.createTextNode(newsTitle))
+        newsTitleEl.appendChild(underscoreSpan)
+    }
 
-            // Create a span element for underscores and add the class "invisible"
-            var underscoreSpan = document.createElement('span')
-            underscoreSpan.textContent = underscores
-            underscoreSpan.classList.add('invisible')
-
-            // Append the span to the newsTitleEl
-            newsTitleEl.textContent = ""
-            newsTitleEl.appendChild(document.createTextNode(newsTitle))
-            newsTitleEl.appendChild(underscoreSpan)
-        }
-
-        if (newsAuthor === null) {
-            newsParaEl.textContent = "Unknown Author"
-        } else {
-            newsParaEl.textContent = "Author: " + newsAuthor
-        }
+    // Display the news author from the API data
+    if (newsAuthor === null || newsAuthor === "") {
+        newsParaEl.textContent = "Unknown Author";
+    } else {
+        newsParaEl.textContent = "Author: " + newsAuthor;
+    }
 
         newsUrlEl.setAttribute("href", newsUrl)
     }
@@ -259,6 +272,33 @@ function clearHistory() {
     displayFavorites()
 }
 
+async function translateTitle(title) {
+    var sourceLang = 'auto' // Auto-detect the source language
+    var targetLang = 'en' // English as the target language
+    var url =
+        'https://translate.googleapis.com/translate_a/single?client=gtx&sl=' +
+        sourceLang +
+        '&tl=' +
+        targetLang +
+        '&dt=t&q=' +
+        encodeURIComponent(title)
+
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+
+        if (data && data[0] && data[0][0] && data[0][0][0]) {
+            console.log(data[0][0])
+            return data[0][0][0] // Return the translated title
+        } else {
+            return title // If translation fails, use the original title
+        }
+    } catch (error) {
+        console.error('Translation error:', error)
+        return title // If translation fails, use the original title
+    }
+} // Translate news titles
+
 clearHistoryBtn.addEventListener('click', clearHistory)
   
 buttonClick.addEventListener('click', function(event){
@@ -281,7 +321,7 @@ buttonClick.addEventListener('click', function(event){
           newsCall(currentCountryObject.cca2.toLowerCase())
           removeHiddenMain()
           displayFavorites()
-} ) // event listener for search button
+}) // event listener for search button
     
 document.addEventListener('DOMContentLoaded', () => {
   
