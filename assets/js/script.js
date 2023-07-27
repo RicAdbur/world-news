@@ -4,7 +4,10 @@ var sidebarEl = document.getElementById("mySidebar")
 var buttonClick = document.getElementById('search-btn')
 var countryObjectArray = []
 var proxyUrl = 'https://octoproxymus.herokuapp.com?secret=walrus&url='
-var apiKey = '6ca5adca9d894c52b90506cf4e32af81'
+var apiKey1 = '6ca5adca9d894c52b90506cf4e32af81'
+var apiKey2 = '41f1f6404e4148378dc8f71e86851acf'
+var apiKey3 = '16fd0419d9a245f9881c879b46493a80'
+var apiKey4 = '9cc304d5d23f4ba185e1870cfce21094'
 var mini = true;
 var clearHistoryBtn = document.getElementById('clear-history-btn')
 
@@ -38,7 +41,7 @@ function fetchRestAPI() {
 } // RestAPI fetch request, also pulls names of countries into search bar in alphabetical order
 
 function newsCall(countryCode) {
-    fetch (proxyUrl + encodeURIComponent('https://newsapi.org/v2/top-headlines?country='+ countryCode + '&apiKey=' + apiKey))
+    fetch (proxyUrl + encodeURIComponent('https://newsapi.org/v2/top-headlines?country='+ countryCode + '&apiKey=' + apiKey2)) // <--- CHANGE NUMBER 1-4 TO CHANGE API KEY
     .then(function(response) {
         return response.json()
     }) 
@@ -66,6 +69,7 @@ function displayCountryInfo() {
     var populationEL = document.getElementById("population-display")
     var regionEl = document.getElementById("region-display")
     var flagEL = document.getElementById("country-flag")
+    var aboutContainerHeading = document.getElementById("about-country")
     var currentCountryObject = countryDataFinder(userInputEl.value)
     var pop = currentCountryObject.population
 
@@ -96,6 +100,7 @@ function displayCountryInfo() {
     flagEL.src = "https://www.countryflagicons.com/FLAT/64/"+ currentCountryObject.cca2 +".png"
         
     countryNameEl.innerText = currentCountryObject.name.common
+    aboutContainerHeading.innerText = currentCountryObject.name.common;
     
 } // displays user selected country info on page, has catches if null data is retrieved
 
