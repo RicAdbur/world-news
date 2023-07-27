@@ -112,9 +112,6 @@ async function translateAndDisplayTitles(articles) {
 
 async function displayNews(articles) {
     var maxLength = 0
-
-    
-
     const translatedTitles = await translateAndDisplayTitles(articles)
 
     for (var i = 0; i < 3; i++) {
