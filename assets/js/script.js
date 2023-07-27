@@ -4,7 +4,7 @@ var sidebarEl = document.getElementById("mySidebar")
 var buttonClick = document.getElementById('search-btn')
 var countryObjectArray = []
 var proxyUrl = 'https://octoproxymus.herokuapp.com?secret=walrus&url='
-var apiKey = '41f1f6404e4148378dc8f71e86851acf'
+var apiKey = '6ca5adca9d894c52b90506cf4e32af81'
 var mini = true;
 var clearHistoryBtn = document.getElementById('clear-history-btn')
 
