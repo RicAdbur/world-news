@@ -98,44 +98,32 @@ function displayCountryInfo() {
     countryNameEl.innerText = currentCountryObject.name.common
     
 } // displays user selected country info on page, has catches if null data is retrieved
-async function displayNews(articles) {
-    var maxLength = 0
 
-    // Function to display the translated titles
+async function displayNews(articles) {
+    var maxLength = 0;
+
     async function translateAndDisplayTitles() {
-        // Function to translate a single title
-        async function translateTitleAndAuthor(index, title) {
-            const translatedTitle = await translateTitle(title)
-            const newsContainer = document.getElementById('news-container-' + index)
-            if (newsContainer) {
-                const newsTitleEl = newsContainer.querySelector('h2')
-                const newsParaEl = newsContainer.querySelector('p')
-                if (newsTitleEl && newsParaEl) {
-                    newsTitleEl.textContent = translatedTitle
-                    newsParaEl.textContent = "Author: " + (articles[index].author || "Unknown Author")
-                }
-            }
+        async function translateTitleAndDisplay(title) {
+            const translatedTitle = await translateTitle(title);
+            return translatedTitle;
         }
 
-        // Create an array of translation promises
-        const translationPromises = articles.map((article, index) => translateTitleAndAuthor(index, article.title))
+        // Create an array of translation promises for titles
+        const translationPromises = articles.map((article) => translateTitleAndDisplay(article.title));
 
         // Wait for all translations to complete
-        await Promise.all(translationPromises)
+        return await Promise.all(translationPromises);
     }
 
-    // Call the function to display the translated titles
-    await translateAndDisplayTitles();
+    const translatedTitles = await translateAndDisplayTitles();
 
-    await translateAndDisplayTitles()
-      
     for (var i = 0; i < 3; i++) {
-        var newsContainer = document.getElementById('news-container-' + i)
-        var newsTitleEl = newsContainer.querySelector('h2')
-        var newsParaEl = newsContainer.querySelector('p')
-        var newsUrlEl = newsContainer.parentElement
-    
-        var newsTitle = articles[i].title
+        var newsContainer = document.getElementById('news-container-' + i);
+        var newsTitleEl = newsContainer.querySelector('h2');
+        var newsParaEl = newsContainer.querySelector('p');
+        var newsUrlEl = newsContainer.parentElement;
+
+        var newsTitle = translatedTitles[i]
         var newsAuthor = articles[i].author
         var newsUrl = articles[i].url
         var newsImgData = articles[i].urlToImage
@@ -278,34 +266,33 @@ function clearHistory() {
     // Update the displayed favorites in the navigation
     displayFavorites()
 }
- 
+
 async function translateTitle(title) {
-    var sourceLang = 'auto'; // Auto-detect the source language
-    var targetLang = 'en'; // English as the target language
+    var sourceLang = 'auto' // Auto-detect the source language
+    var targetLang = 'en' // English as the target language
     var url =
         'https://translate.googleapis.com/translate_a/single?client=gtx&sl=' +
         sourceLang +
         '&tl=' +
         targetLang +
         '&dt=t&q=' +
-        encodeURIComponent(title);
+        encodeURIComponent(title)
 
     try {
-        const response = await fetch(url);
-        const data = await response.json();
+        const response = await fetch(url)
+        const data = await response.json()
 
         if (data && data[0] && data[0][0] && data[0][0][0]) {
             console.log(data[0][0])
-            return data[0][0][0]; // Return the translated title
+            return data[0][0][0] // Return the translated title
         } else {
-            return title; // If translation fails, use the original title
+            return title // If translation fails, use the original title
         }
     } catch (error) {
-        console.error('Translation error:', error);
-        return title; // If translation fails, use the original title
+        console.error('Translation error:', error)
+        return title // If translation fails, use the original title
     }
 } // Translate news titles
-      
 
 clearHistoryBtn.addEventListener('click', clearHistory)
   
