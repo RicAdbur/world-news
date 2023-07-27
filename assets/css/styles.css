@@ -23,7 +23,7 @@ h2 {
 
 #main-info-container {
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 14px;
     border: 1px solid var(--bulma-primary);
     background: linear-gradient(to bottom, white, grey);
 }
@@ -34,6 +34,16 @@ h2 {
 
 #main-info-container .columns .box.news {
     flex: 1 0 30%;
+}
+
+#about-container {
+    background-color: var(--bulma-primary);
+    border: 1px solid var(--bulma-primary);
+}
+
+#about-container h2 {
+    padding-top: 0;
+    margin-bottom: 0;
 }
 
 /* Form style */
@@ -98,51 +108,35 @@ html, body {
 /* flag */
 #country-flag {
     width: 136px;
-    transform: translate(4px, -19.5px);
+    transform: translate(-3px, -19.5px);
     align-self: flex-start;
 }
 
 #data-display {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     /* align-items: center; */
     justify-content: space-between;
     text-align: center;
-}
-
-/* flag column */
-.flag-div {
-    display: flex;
-    flex: 0 0 auto;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-/* Shrink the font size to fit the container when it becomes too small */
-.country-info {
-    flex-shrink: 1;
+    flex: 1 0 calc(33.33% - 10px);
 }
 
 /* country description column */
 .desc-div {
-    flex: 1;
+    flex: 2 0 calc(66.66% - 10px);
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    margin-left: 0.5rem;
-    flex-shrink: 1;
-    overflow: hidden;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
     font-size: clamp(11px, 2.3vw, 1rem);
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
 .desc-div p {
     margin-right: 20px;
 }
-
   
 a.news {
     border: 1px solid black;
@@ -154,7 +148,7 @@ a.news {
 
 a.news:hover {
     box-shadow: 2px 2px 15px grey;
-    transform: scale(1.08);
+    transform: scale(1.06);
     border: 1px solid var(--bulma-primary);
     transition: all .5s;
 }
@@ -175,6 +169,9 @@ span #clear-history {
 
 
 .country-info {
+    margin-left: 1rem;
+    line-height: 2.75rem;
+    font-size: 1.5rem;
     color: white ;
     text-shadow: 0px 0px 3px black;
 }
@@ -347,6 +344,7 @@ main .sidebar {
 @media (max-width: 870px) {
     header {
         padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
     }
 
     main {
@@ -372,10 +370,6 @@ main .sidebar {
         margin-left: .5rem !important;
         margin-right: .5rem !important;
         width: 100% !important;
-    }
-
-    .desc-div{
-        flex-direction: column;
     }
 
     .logo {
@@ -404,7 +398,8 @@ main .sidebar {
     }
 
     #data-display {
-        flex-direction: column;
+        height: 178px;
+
     }
     
     /* Set the flex direction to vertical for the .news-container divs */
@@ -457,17 +452,22 @@ main .sidebar {
     #main-info-container .columns {
         display: flex;
         flex-wrap: wrap;
-      }
+    }
       
-      /* Set flex-basis to 100% for the .box.news elements to take full width */
-      #main-info-container .columns .box.news {
-        flex-basis: 97%;
-      }
+    #main-info-container .columns .box.news {
+        flex-basis: 100%;
+    }
+
+    .country-info {
+        margin-left: 2px;
+        line-height: 1.75rem;
+    }
 }
 
 @media (min-width:871px) and (max-width:951px) {
     header {
         padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
     }
 
     main {
@@ -521,6 +521,13 @@ main .sidebar {
         padding: 6px;
         text-align: end;
     }
+
+    #about-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 213px;
+    }
 }
 
 @media (min-width:952px) and (max-width:1320px) {
@@ -528,6 +535,7 @@ main .sidebar {
         padding-top: 2rem !important;
         padding-left: 23px !important;
         padding-right: 23px !important;
+        padding-bottom: 2rem !important;
     }
 
     main {
@@ -537,7 +545,7 @@ main .sidebar {
     }
     
     .logo {
-        margin-top: 0;
+        margin-top: 0 !important;
     }       
     
     .box {
@@ -562,6 +570,15 @@ main .sidebar {
         margin-right: 0;
     }
 
+    #about-container {
+        margin-left: 0;
+        margin-right: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 213px;
+    }
+
     .news-desc {
         text-align: left;
         width: 95%;
@@ -576,11 +593,19 @@ main .sidebar {
 }
 
 @media (min-width:1320px) {
+    header {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
     main {
         padding-top: 0 !important;
         padding-left: 20px !important;
         padding-right: 20px !important;
     }
+
+    .logo {
+        margin-top: 0rem;
+    }       
 
     .box {
         width: 81%;
@@ -597,5 +622,12 @@ main .sidebar {
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         padding-top: 0;
+    }
+
+    #about-container {
+        height: 213px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 }

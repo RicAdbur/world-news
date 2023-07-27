@@ -54,7 +54,7 @@
         </header>
 
         <main id="main-container" class="section hidden">
-        <!-- News Info Container -->
+            <!-- News Info Container -->
             <div id="main-info-container" class="box">
                 <h2 class="title has-text-centered">Latest News in <span id="country-name">{Country}</span></h2>
                 <div class="columns is-multiline is-centered">
@@ -81,20 +81,21 @@
                     </a>
                 </div>
 
-            <!-- Country Info Container-->
-                <div id="data-display">
-                    <div class="flag-div">
-                        <img id="country-flag" src="" alt="country flag">
-                    </div>
-                    <div class="desc-div">
-                        <p id="capital-display" class="country-info"></p>
-                        <p id="language-display" class="country-info"></p>
-                        <p id="population-display" class="country-info"></p>
-                        <p id="region-display" class="country-info"></p>
-                    </div>
-                </div>
             </div>
-
+            <div id="about-container" class="box">
+                <!-- Country Info Container-->
+                <div id="data-display">
+                    <h2 class="title has-text-left">About <br><span id="about-country">{Country}</span></h2>
+                    <img id="country-flag"  src="" alt="country flag">
+                </div>
+                <div class="desc-div">
+                    <p id="capital-display" class="country-info"></p>
+                    <p id="language-display" class="country-info"></p>
+                    <p id="population-display" class="country-info"></p>
+                    <p id="region-display" class="country-info"></p>
+                </div>
+                
+            </div>
         </main>
 
     </div>
