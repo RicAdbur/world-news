@@ -100,28 +100,27 @@ function displayCountryInfo() {
 } // displays user selected country info on page, has catches if null data is retrieved
 
 async function displayNews(articles) {
-    var maxLength = 0;
+    var maxLength = 0
 
     async function translateAndDisplayTitles() {
         async function translateTitleAndDisplay(title) {
             const translatedTitle = await translateTitle(title);
-            return translatedTitle;
+            return translatedTitle
         }
 
         // Create an array of translation promises for titles
-        const translationPromises = articles.map((article) => translateTitleAndDisplay(article.title));
+        const translationPromises = articles.map((article) => translateTitleAndDisplay(article.title))
 
-        // Wait for all translations to complete
-        return await Promise.all(translationPromises);
+        return await Promise.all(translationPromises)
     }
 
-    const translatedTitles = await translateAndDisplayTitles();
+    const translatedTitles = await translateAndDisplayTitles()
 
     for (var i = 0; i < 3; i++) {
-        var newsContainer = document.getElementById('news-container-' + i);
-        var newsTitleEl = newsContainer.querySelector('h2');
-        var newsParaEl = newsContainer.querySelector('p');
-        var newsUrlEl = newsContainer.parentElement;
+        var newsContainer = document.getElementById('news-container-' + i)
+        var newsTitleEl = newsContainer.querySelector('h2')
+        var newsParaEl = newsContainer.querySelector('p')
+        var newsUrlEl = newsContainer.parentElement
 
         var newsTitle = translatedTitles[i]
         var newsAuthor = articles[i].author
@@ -129,6 +128,12 @@ async function displayNews(articles) {
         var newsImgData = articles[i].urlToImage
         var newsImg = newsContainer.querySelector("img")
 
+    // check if the newsTitle contains a '-'
+    if (newsTitle.includes('-')) {
+        var lastDashIndex = newsTitle.lastIndexOf(' - ')
+        newsTitle = newsTitle.substring(0, lastDashIndex).trim()
+    }
+    
     if (newsImgData === null) {
         newsImg.setAttribute("src", 'assets/images/daily-news-stock.jpg')
     } else {
@@ -139,7 +144,7 @@ async function displayNews(articles) {
         newsTitleEl.textContent = "No news available! Try a different country"
     } else {
         // Calculate the number of underscores to add (cut by half)
-        var numUnderscoresToAdd = Math.ceil((maxLength - newsTitle.length) / 2);
+        var numUnderscoresToAdd = Math.ceil((maxLength - newsTitle.length) / 2)
         var underscores = ""
 
         // Add the required number of underscores with spaces
