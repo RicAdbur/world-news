@@ -46,10 +46,8 @@ function newsCall(countryCode) {
         return response.json()
     }) 
     .then(function(value) {
-        // console.log(value)
         // articleArray = value.articles
         displayNews(value.articles)
-        // console.log(value.articles)
     })
 } // completes call to news API and runs displayNews()
 
@@ -171,7 +169,7 @@ async function displayNews(articles) {
         newsUrlEl.setAttribute("href", newsUrl)
     }
     userInputEl.value = "" //clear user entry
-} //displays news data into the cards in the html
+} // displays news data into the cards in the html
 
 function removeHiddenMain(){
     var mainContainer= document.getElementById('main-container')
@@ -227,7 +225,7 @@ function displayFavorites(){
                 displayCountryInfo()
                 newsCall(storedCountries[i].code.toLowerCase())
                 removeHiddenMain()
-            })//event listener for history clicks
+            }) //event listener for history clicks
 
         }
         // Show the "Clear History" button
@@ -259,8 +257,8 @@ function toggleSidebar() {
         document.getElementById("mySidebar").style.width = "85px"
         document.getElementById("main").style.marginLeft = "85px"
         this.mini = true;
-    } // courtesy of Dalis Chan, Medium.com
-} // sidebar mouseover action
+    }
+} // sidebar mouseover action - courtesy of Dalis Chan, Medium.com
 
 function clearHistory() {
     // Clear the user's search history from localStorage
@@ -284,10 +282,8 @@ async function translateTitle(title) {
     try {
         const response = await fetch(url)
         const data = await response.json()
-        console.log("translation response", data)
 
         if (data && data[0] && data[0][0] && data[0][0][0]) {
-            // console.log(data[0][0])
             return data[0][0][0] // Return the translated title
         } else {
             return title // If translation fails, use the original title
@@ -303,7 +299,6 @@ clearHistoryBtn.addEventListener('click', clearHistory)
 buttonClick.addEventListener('click', function(event){
       event.preventDefault()
       
-      // console.log(userInputEl.value)
       var currentCountryObject = countryDataFinder(userInputEl.value)
        if (currentCountryObject === null) {
           return;
