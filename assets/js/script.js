@@ -101,6 +101,7 @@ function displayCountryInfo() {
     aboutContainerHeading.innerText = currentCountryObject.name.common;
     
 } // displays user selected country info on page, has catches if null data is retrieved
+
 async function translateAndDisplayTitles(articles) {
     // Create an array of translation promises for titles
     const translationPromises = articles.map((article) => translateTitle(article.title))
@@ -139,7 +140,7 @@ async function displayNews(articles) {
     if (newsTitle === null) {
         newsTitleEl.textContent = "No news available! Try a different country"
     } else {
-        // Calculate the number of underscores to add (cut by half)
+        // Calculate the number of underscores to add (cut by half). Adding these in to attempt to make the physical space taken up by the innerHTML the same in each container to prevent img height differences
         var numUnderscoresToAdd = Math.ceil((maxLength - newsTitle.length) / 2)
         var underscores = ""
 
@@ -192,7 +193,7 @@ function getLocalStorage() {
     return JSON.parse(data) || []
 } // calls local storage for userFavorites
 
-function displayFavorites(){
+function displaySearchHistory(){
     var storedCountries = getLocalStorage()
     // check if there are stored countries
     if (storedCountries.length > 0) {
@@ -241,12 +242,12 @@ function displayFavorites(){
 
 function saveFavorite() {
     setLocalStorage(capitalizedCountry)
-    displayFavorites()
+    displaySearchHistory()
 } // for event listener for favorite button
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
-} // takes the first letter of the string, capitalizes it, concats it back into a string
+// function capitalizeFirstLetter(string) {
+//     return string.charAt(0).toUpperCase() + string.slice(1)
+// } // takes the first letter of the string, capitalizes it, concats it back into a string, not currently used after changes but left in for possible future use
 
 function toggleSidebar() {
     if (mini) {
@@ -265,8 +266,8 @@ function clearHistory() {
     localStorage.removeItem('userFavorites')
   
     // Update the displayed favorites in the navigation
-    displayFavorites()
-}
+    displaySearchHistory()
+} //removes local storage for search history
 
 async function translateTitle(title) {
     var sourceLang = 'auto' // Auto-detect the source language
@@ -314,7 +315,7 @@ buttonClick.addEventListener('click', function(event){
   
           newsCall(currentCountryObject.cca2.toLowerCase())
           removeHiddenMain()
-          displayFavorites()
+          displaySearchHistory()
 }) // event listener for search button
     
 document.addEventListener('DOMContentLoaded', () => {
@@ -353,4 +354,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 fetchRestAPI() // calls to REST API, creates country objects for all countries and sets country names in the search bar
   
-displayFavorites()
+displaySearchHistory()
