@@ -289,6 +289,10 @@ span #clear-history {
     padding-bottom: 10px;
     white-space: nowrap;
 }
+
+.sidebar.open {
+    width:250px;
+}
   
 .sidebar a {
     padding: 8px 8px 8px 32px;
@@ -333,11 +337,32 @@ main .sidebar {
 .margin-correction {
     transform: translateX(-50px);
 }
+
+.sidebar #closeButton {
+    display: none;
+}
+
 /* Media queries */
 @media (max-width:450px){
     .news-img{
         height: auto;
         width: auto;
+    }
+
+    .sidebar.open {
+        width: 100%;
+
+    }
+
+    .sidebar.open #closeButton {
+        display: block;
+        float: right;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+        margin-right: 10px;
     }
 }
 

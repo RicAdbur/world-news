@@ -205,6 +205,11 @@ function displayFavorites(){
         // adds search history objects to savedUserFavorites array
         sidebarEl.innerHTML= ''
         storedCountries.reverse()
+        var closeButton = document.createElement("button")
+        closeButton.id = "closeButton"
+        closeButton.innerText = "<<"
+        sidebarEl.appendChild(closeButton)
+        closeButton.addEventListener("click", toggleSidebar)
         for (let i = 0; i < storedCountries.length; i++) {
             var anchorTag = document.createElement("a")
             var imgTag = document.createElement("img")
@@ -250,12 +255,12 @@ function capitalizeFirstLetter(string) {
 
 function toggleSidebar() {
     if (mini) {
-        document.getElementById("mySidebar").style.width = "250px"
-        document.getElementById("main").style.marginLeft = "250px"
+        document.getElementById("mySidebar").classList.add("open")
+        // document.getElementById("main").style.marginLeft = "250px"
         this.mini = false;
     } else {
-        document.getElementById("mySidebar").style.width = "85px"
-        document.getElementById("main").style.marginLeft = "85px"
+        document.getElementById("mySidebar").classList.remove("open")
+        // document.getElementById("main").style.marginLeft = "85px"
         this.mini = true;
     }
 } // sidebar mouseover action - courtesy of Dalis Chan, Medium.com
