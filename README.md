@@ -37,9 +37,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Deployed URL
-[News World](https://ricadbur.github.io/world-news/)
-
 ---
 Powered by [REST Coutries API](https://restcountries.com/) and [NewsAPI](https://https://newsapi.org/)
 

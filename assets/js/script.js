@@ -1,15 +1,15 @@
-var userInputEl = document.getElementById("user-selection") 
-var navEl = document.querySelector("nav")
-var sidebarEl = document.getElementById("mySidebar")
-var buttonClick = document.getElementById('search-btn')
-var countryObjectArray = []
-var proxyUrl = 'https://octoproxymus.herokuapp.com?secret=walrus&url='
 var apiKey1 = '6ca5adca9d894c52b90506cf4e32af81'
 var apiKey2 = '41f1f6404e4148378dc8f71e86851acf'
 var apiKey3 = '16fd0419d9a245f9881c879b46493a80'
 var apiKey4 = '9cc304d5d23f4ba185e1870cfce21094'
-var mini = true;
+var proxyUrl = 'https://octoproxymus.herokuapp.com?secret=walrus&url='
+var userInputEl = document.getElementById("user-selection") 
+var buttonClick = document.getElementById('search-btn')
+var navEl = document.querySelector("nav")
+var sidebarEl = document.getElementById("mySidebar")
 var clearHistoryBtn = document.getElementById('clear-history-btn')
+var countryObjectArray = []
+var mini = true;
 
 var validNewsCountries = ['ae','ar','at','au','be','bg','br','ca','ch','cn','co','cu','cz','de','eg','fr','gb','gr','hk','hu','id','ie','il','in','it','jp','kr','lt','lv','ma','mx','my','ng','nl','no','nz','ph','pl','pt','ro','rs','ru','sa','se','sg','si','sk','th','tr','tw','ua','us','ve','za']
 
@@ -195,8 +195,9 @@ function getLocalStorage() {
 
 function displaySearchHistory(){
     var storedCountries = getLocalStorage()
-    // check if there are stored countries
+    // check if there are any stored countries
     if (storedCountries.length > 0) {
+        // if so, show search history sidebar
         navEl.classList.remove("hidden")
         document.getElementById("main").classList.remove("margin-correction")
         // limits search history to max of 10 results
@@ -206,11 +207,15 @@ function displaySearchHistory(){
         // adds search history objects to savedUserFavorites array
         sidebarEl.innerHTML= ''
         storedCountries.reverse()
+        
+        // button that retracts sidebar (only on mobile screen sizes)
         var closeButton = document.createElement("button")
         closeButton.id = "closeButton"
         closeButton.innerText = "<<"
         sidebarEl.appendChild(closeButton)
         closeButton.addEventListener("click", toggleSidebar)
+
+        // loop that creates search history buttons
         for (let i = 0; i < storedCountries.length; i++) {
             var anchorTag = document.createElement("a")
             var imgTag = document.createElement("img")
@@ -264,7 +269,7 @@ function toggleSidebar() {
         // document.getElementById("main").style.marginLeft = "85px"
         this.mini = true;
     }
-} // sidebar mouseover action - courtesy of Dalis Chan, Medium.com
+} // sidebar mouseover function modified from code by Dalis Chan, Medium.com
 
 function clearHistory() {
     // Clear the user's search history from localStorage
@@ -359,4 +364,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 fetchRestAPI() // calls to REST API, creates country objects for all countries and sets country names in the search bar
   
-displaySearchHistory()
+displaySearchHistory() // loads search history buttons in the sidebar on page load, if there are any

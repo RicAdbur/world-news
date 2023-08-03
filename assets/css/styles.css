@@ -345,9 +345,22 @@ main .sidebar {
 
 /* Media queries */
 @media (max-width:450px){
+
+    #main {
+        margin-left: 55px;
+    }
+
     .news-img{
         height: auto;
         width: auto;
+    }
+
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar a {
+        padding: 8px 8px 8px 20px;
     }
 
     .sidebar.open {
@@ -357,7 +370,9 @@ main .sidebar {
 
     .sidebar.open #closeButton {
         display: block;
-        float: right;
+        position: fixed;
+        top: 5px;
+        right: 5px;
         background: none;
         border: none;
         color: white;
